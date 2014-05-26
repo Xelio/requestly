@@ -15,7 +15,7 @@ chrome.webRequest.onBeforeRequest.addListener(
 );
 
 chrome.browserAction.onClicked.addListener(function () {
-  chrome.tabs.create({'url': chrome.extension.getURL('pages/f.html')}, function(tab) {
+  chrome.tabs.create({'url': chrome.extension.getURL('src/pages/index.html')}, function(tab) {
     // Tab opened.
   });
 });

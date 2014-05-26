@@ -1,0 +1,30 @@
+.header {
+  background: rgba(0, 0, 0, 0.86);
+  height: 45px;
+  line-height: 45px;
+  font-size: 14px;
+  text-align: center;
+  color: #ccc;
+}
+
+.icon-requestly {
+  height: 30px;
+  position: relative;
+  top: -3px;
+}
+
+.rq-white {
+  color: white;
+  font-size: 18px;
+  text-shadow: 0 0 1px;
+}
+
+.rq-blue {
+  color: #3DA4DF;
+  margin-left: -4px;
+  font-weight: bold;
+  font-size: 18px;
+  text-shadow: 0 0 1px;
+  font-family: monospace;
+  letter-spacing: -2px;
+}

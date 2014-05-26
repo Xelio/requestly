@@ -1,10 +1,19 @@
 <html>
   <head>
     <title>Requestly - Play with Network Calls</title>
+    <link href="/src/libs/bootstrap.css" rel="stylesheet">
+    <link href="/src/pages/css/styles.css" rel="stylesheet">
   </head>
   <body>
+    <div class="header">
+      <img src="/resources/images/48x48x32.png" class="icon-requestly">
+      <span class="rq-white">Request</span>
+      <span class="rq-blue">ly</span>
+      <span class="rq-dash"> - </span>
+      <span class="rq-line">Play with Network Requests</span>
+    </div>
 
-    <div id="rules"></div>
+    <div class="content"></div>
 
     <!-- Load all scripts here  -->
     <script type="text/javascript" src="/src/libs/jquery-1.9.1.js"></script>
@@ -12,8 +21,6 @@
     <script type="text/javascript" src="/src/libs/backbone-1.1.2.js"></script>
     <script type="text/javascript" src="/src/pages/js/app.js"></script>
     <script type="text/javascript" src="/src/pages/js/router.js"></script>
-    <script type="text/javascript">
-      RQ.init({el: '#rules'});
-    </script>
+    <script type="text/javascript" src="/src/pages/js/init.js"></script>
   </body>
 </html>

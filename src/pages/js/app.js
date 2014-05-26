@@ -1,7 +1,7 @@
 var RQ = {
   init: function(options) {
-    this.app = new
-  },
-  Models: {},
-  Collections: {}
+    // Create models, collections, views here
+    this.router = new RQ.Router();
+    Backbone.history.start();
+  }
 };
