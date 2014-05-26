@@ -5,6 +5,17 @@
     <link href="/src/pages/css/styles.css" rel="stylesheet">
   </head>
   <body>
+    <!-- All templates go here -->
+    <script type="text/template" id="rule-editor-template">
+      <label>Enter Rule Name:</label>
+      <input type="text" name="rule-name" placeholder="Redirect Bing to Google"/>
+
+      <label>Enter Rule Description:</label>
+      <textarea name="rule-description" placeholder="Open google.com instead of bing.com"></textarea>
+    </script>
+
+    <!-- End of templates sections -->
+
     <div class="header">
       <img src="/resources/images/48x48x32.png" class="icon-requestly">
       <span class="rq-white">Request</span>
@@ -19,6 +30,14 @@
     <script type="text/javascript" src="/src/libs/jquery-1.9.1.js"></script>
     <script type="text/javascript" src="/src/libs/underscore-1.6.0.js"></script>
     <script type="text/javascript" src="/src/libs/backbone-1.1.2.js"></script>
+
+    <!-- Backbone Collections -->
+
+    <!-- Backbone Models -->
+
+    <!-- Backbone Views -->
+    <script type="text/javascript" src="/src/pages/js/views/RuleEditorView.js"></script>
+
     <script type="text/javascript" src="/src/pages/js/app.js"></script>
     <script type="text/javascript" src="/src/pages/js/router.js"></script>
     <script type="text/javascript" src="/src/pages/js/init.js"></script>

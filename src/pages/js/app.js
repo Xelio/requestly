@@ -1,7 +1,20 @@
 var RQ = {
   init: function(options) {
-    // Create models, collections, views here
+
+    this.Models = {
+
+    };
+
+    this.Collections = {
+
+    };
+
+    this.Views = {
+      ruleEditView: new RuleEditorView()
+    };
+
     this.router = new RQ.Router();
+
     Backbone.history.start();
   }
 };

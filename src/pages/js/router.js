@@ -9,6 +9,6 @@ RQ.Router = Backbone.Router.extend({
   },
 
   showRuleEditor: function() {
-    alert('Rules Editor will be displayed here');
+    RQ.Views.ruleEditView.render( {template: '#rule-editor-template', el: '.content' });
   }
 });
