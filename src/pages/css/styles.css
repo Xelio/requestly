@@ -1,7 +1,11 @@
+body {
+  background: #bbb;
+}
+
 .header {
   background: rgba(0, 0, 0, 0.86);
-  height: 45px;
-  line-height: 45px;
+  height: 35px;
+  line-height: 35px;
   font-size: 14px;
   text-align: center;
   color: #ccc;
@@ -27,4 +31,60 @@
   text-shadow: 0 0 1px;
   font-family: monospace;
   letter-spacing: -2px;
+}
+
+.content {
+  width: 600px;
+  margin: auto;
+  background: #eee;
+  position: absolute;
+  top: 35px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.rule-header {
+  background: #5B9027;
+  padding: 10px;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.content > section {
+  padding: 16px;
+}
+
+.input-group {
+  padding: 10px 0;
+}
+
+.description-container {
+  padding-bottom: 10px;
+}
+
+.description-container > div {
+  padding: 5px 0;
+  color: #555;
+}
+
+.rule-description {
+  resize: none;
+  height: 100px;
+  width: 100%;
+  margin: 0;
+  border-radius: 2px;
+  padding: 5px;
+}
+
+.buttons-container .btn {
+  float: right;
+  border-radius: 2px;
+  margin: 5px;
+}
+
+#create-redirect-rule {
+  background-color: #5B9027;
+  border-color: #5B9027;
 }

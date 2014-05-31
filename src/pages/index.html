@@ -7,11 +7,35 @@
   <body>
     <!-- All templates go here -->
     <script type="text/template" id="rule-editor-template">
-      <label>Enter Rule Name:</label>
-      <input type="text" name="rule-name" placeholder="Redirect Bing to Google"/>
+      <nav class="rule-header">
+        <span>Create Redirect Request Rule</span>
+      </nav>
+      <section class="rule-body">
+        <div class="input-group name-container">
+          <span class="input-group-addon">Rule Name</span>
+          <input type="text" class="form-control" placeholder="">
+        </div>
 
-      <label>Enter Rule Description:</label>
-      <textarea name="rule-description" placeholder="Open google.com instead of bing.com"></textarea>
+        <div class="description-container">
+          <div>Rule Description (Optional)</div>
+          <textarea class="rule-description" placeholder="e.g. Redirecting app.js on qa environment to dev environment"></textarea>
+        </div>
+
+        <div class="input-group source-container">
+          <span class="input-group-addon">Source</span>
+          <input type="text" class="form-control" placeholder="e.g. http://www.yahoo.com/">
+        </div>
+
+        <div class="input-group destination-container">
+          <span class="input-group-addon">Destination</span>
+          <input type="text" class="form-control" placeholder="e.g. http://www.google.com/">
+        </div>
+
+        <div class="buttons-container">
+          <a id="create-redirect-rule" class="btn btn-success">Save</a>
+          <a href="#" class="btn btn-default">Cancel</a>
+        </div>
+      </section>
     </script>
 
     <!-- End of templates sections -->

@@ -10,6 +10,8 @@
       "src/background/background.js"
     ]
   },
+
+  "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
   
   "browser_action": {
     "default_icon": "resources/images/256x256.png",
