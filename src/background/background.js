@@ -1,5 +1,6 @@
-// http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.js
-// http://documentcloud.github.io/underscore/underscore.js
+var BG = {
+  Methods: {}
+};
 
 chrome.webRequest.onBeforeRequest.addListener(
   function(details) {

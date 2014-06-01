@@ -13,7 +13,7 @@
       <section class="rule-body">
         <div class="input-group name-container">
           <span class="input-group-addon">Rule Name</span>
-          <input type="text" class="form-control" placeholder="">
+          <input type="text" class="form-control rule-name-input" placeholder="">
         </div>
 
         <div class="description-container">
@@ -23,16 +23,16 @@
 
         <div class="input-group source-container">
           <span class="input-group-addon">Source</span>
-          <input type="text" class="form-control" placeholder="e.g. http://www.yahoo.com/">
+          <input type="url" class="form-control source-url-input" placeholder="e.g. http://www.yahoo.com/">
         </div>
 
         <div class="input-group destination-container">
           <span class="input-group-addon">Destination</span>
-          <input type="text" class="form-control" placeholder="e.g. http://www.google.com/">
+          <input type="url" class="form-control destination-url-input" placeholder="e.g. http://www.google.com/">
         </div>
 
         <div class="buttons-container">
-          <a id="create-redirect-rule" class="btn btn-success">Save</a>
+          <a id="save-redirect-rule" class="btn btn-success">Save</a>
           <a href="#" class="btn btn-default">Cancel</a>
         </div>
       </section>
@@ -58,9 +58,10 @@
     <!-- Backbone Collections -->
 
     <!-- Backbone Models -->
+    <script type="text/javascript" src="/src/pages/js/models/RedirectRuleModel.js"></script>
 
     <!-- Backbone Views -->
-    <script type="text/javascript" src="/src/pages/js/views/RuleEditorView.js"></script>
+    <script type="text/javascript" src="/src/pages/js/views/RedirectRuleEditorView.js"></script>
 
     <script type="text/javascript" src="/src/pages/js/app.js"></script>
     <script type="text/javascript" src="/src/pages/js/router.js"></script>

@@ -3,12 +3,12 @@ body {
 }
 
 .header {
-  background: rgba(0, 0, 0, 0.86);
+  background: #4c66a4;
   height: 35px;
   line-height: 35px;
   font-size: 14px;
   text-align: center;
-  color: #ccc;
+  color: #eee;
 }
 
 .icon-requestly {
@@ -84,7 +84,7 @@ body {
   margin: 5px;
 }
 
-#create-redirect-rule {
+#save-redirect-rule {
   background-color: #5B9027;
   border-color: #5B9027;
 }
