@@ -4,7 +4,8 @@ var RedirectRuleModel = Backbone.Model.extend({
       name: '',
       description: '',
       source: '',
-      destination: ''
+      destination: '',
+      ruleType: RQ.RULE_TYPES.REDIRECT
     }
   },
 
@@ -38,5 +39,26 @@ var RedirectRuleModel = Backbone.Model.extend({
 
   setDestination: function(destUrl) {
     this.set('destination', destUrl);
+  },
+
+  getTimestamp: function() {
+    return Date.now();
+  },
+
+  getRuleType: function() {
+    return this.get('ruleType');
+  },
+
+  save: function() {
+    var objectKey = this.getRuleType() + '_' + this.getTimestamp(),
+      storageObject = {},
+      BG = chrome.extension.getBackgroundPage(),
+      storageService = BG.StorageService;
+
+    storageObject[objectKey] = this.toJSON();
+
+    storageService.saveRecord(storageObject, function() {
+      console.log('object saved');
+    });
   }
 });
