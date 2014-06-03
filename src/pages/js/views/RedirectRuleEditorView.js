@@ -43,6 +43,7 @@ var RuleEditorView = Backbone.View.extend({
   },
 
   saveRule: function() {
+    this.model.setCreationDate(this.model.getTimestamp());
     this.model.save();
   }
 });
