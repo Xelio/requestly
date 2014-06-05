@@ -5,7 +5,7 @@ RQ.Router = Backbone.Router.extend({
   },
 
   showRulesList: function() {
-    alert('Rules List');
+    RQ.Views.ruleIndexView.render({template: RQ.Templates.RULE_INDEX_TEMPLATE, el: '.content'});
   },
 
   showRuleEditor: function() {

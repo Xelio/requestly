@@ -45,11 +45,18 @@ body {
 }
 
 .rule-header {
-  background: #5B9027;
   padding: 10px;
   color: white;
   font-size: 16px;
   font-weight: bold;
+}
+
+.rq-green {
+  background: #5B9027;
+}
+
+.rq-dimgrey {
+  background: dimgrey;
 }
 
 .content > section {

@@ -2,12 +2,13 @@
   <head>
     <title>Requestly - Play with Network Calls</title>
     <link href="/src/libs/bootstrap.css" rel="stylesheet">
+    <link href="/src/pages/css/index.css" rel="stylesheet">
     <link href="/src/pages/css/styles.css" rel="stylesheet">
   </head>
   <body>
     <!-- All templates go here -->
     <script type="text/template" id="rule-editor-template">
-      <nav class="rule-header">
+      <nav class="rule-header rq-green">
         <span>Create Redirect Request Rule</span>
       </nav>
       <section class="rule-body">
@@ -38,6 +39,13 @@
       </section>
     </script>
 
+    <script type="text/template" id="rule-index-template">
+      <nav class="rule-header rq-dimgrey">
+        <span>Rules</span>
+        <a href="#new" role="button" class="btn-success btn right create-rule-button">New Rule</a>
+      </nav>
+    </script>
+
     <!-- End of templates sections -->
 
     <div class="header">
@@ -65,6 +73,7 @@
 
     <!-- Backbone Views -->
     <script type="text/javascript" src="/src/pages/js/views/RedirectRuleEditorView.js"></script>
+    <script type="text/javascript" src="/src/pages/js/views/RuleIndexView.js"></script>
 
     <script type="text/javascript" src="/src/pages/js/app.js"></script>
     <script type="text/javascript" src="/src/pages/js/router.js"></script>

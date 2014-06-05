@@ -1,0 +1,7 @@
+.create-rule-button {
+  float: right;
+  position: relative;
+  top: -3px;
+  padding: 3px 10px;
+  right: 5px;
+}
