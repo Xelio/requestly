@@ -43,7 +43,13 @@ var RuleEditorView = Backbone.View.extend({
   },
 
   saveRule: function() {
-    this.model.setCreationDate(this.model.getTimestamp());
-    this.model.save();
+    var ts = this.model.getTimestamp();
+
+    this.model.setCreationDate(ts);
+    this.model.save({ callback: function() {
+      RQ.router.navigate('', { trigger: true });
+
+      // TODO (@sachin) Send Message to background to update the activeRules
+    }});
   }
 });

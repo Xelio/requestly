@@ -42,8 +42,27 @@
     <script type="text/template" id="rule-index-template">
       <nav class="rule-header rq-dimgrey">
         <span>Rules</span>
+        <span>(<%= rules.length %>)</span>
         <a href="#new" role="button" class="btn-success btn right create-rule-button">New Rule</a>
       </nav>
+      <section class="rule-index">
+        <table class="table">
+          <thead>
+            <tr><th>#</th><th>Rule Name</th><th>Type</th><th>Status</th><th>Created on</th></tr>
+          </thead>
+          <tbody>
+            <% _.each(rules, function(rule, index) { %>
+            <tr>
+              <td><%= RQ.htmlEncode(index + 1) %></td>
+              <td><%= RQ.htmlEncode(rule.getName()) %></td>
+              <td><%= RQ.htmlEncode(rule.getRuleType()) %></td>
+              <td><%= RQ.htmlEncode(rule.getStatus()) %></td>
+              <td><%= RQ.htmlEncode(rule.getCreationDate()) %></td>
+            </tr>
+            <% }); %>
+          </tbody>
+          </table>
+      </section>
     </script>
 
     <!-- End of templates sections -->
@@ -65,11 +84,12 @@
 
     <script type="text/javascript" src="/src/Shared/shared.js"></script>
 
-    <!-- Backbone Collections -->
-
     <!-- Backbone Models -->
     <script type="text/javascript" src="/src/pages/js/models/BaseRuleModel.js"></script>
     <script type="text/javascript" src="/src/pages/js/models/RedirectRuleModel.js"></script>
+
+    <!-- Backbone Collections -->
+    <script type="text/javascript" src="/src/pages/js/collections/RulesCollection.js"></script>
 
     <!-- Backbone Views -->
     <script type="text/javascript" src="/src/pages/js/views/RedirectRuleEditorView.js"></script>

@@ -4,6 +4,7 @@ var BaseRuleModel = Backbone.Model.extend({
       name: '',
       description: '',
       ruleType: '',
+      status: 'active',
       creationDate: ''
     }
   },
@@ -32,20 +33,29 @@ var BaseRuleModel = Backbone.Model.extend({
     this.set('creationDate', date);
   },
 
+  getCreationDate: function() {
+    return this.get('creationDate');
+  },
+
   getRuleType: function() {
     return this.get('ruleType');
   },
 
-  save: function() {
+  getStatus: function() {
+    return this.get('status');
+  },
+
+  save: function(options) {
     var objectKey = this.getRuleType() + '_' + this.getTimestamp(),
       storageObject = {},
-      BG = chrome.extension.getBackgroundPage(),
       storageService = BG.StorageService;
 
     storageObject[objectKey] = this.toJSON();
 
-    storageService.saveRecord(storageObject, function() {
+    options.callback = options.callback || function() {
       console.log('object saved');
-    });
+    };
+
+    storageService.saveRecord(storageObject, options.callback);
   }
 });

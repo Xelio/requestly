@@ -10,6 +10,10 @@ StorageService.printRecords = function() {
   });
 };
 
+StorageService.clearDB = function() {
+  this.DB.clear();
+};
+
 StorageService.getRecords = function(options) {
   var self = this;
 

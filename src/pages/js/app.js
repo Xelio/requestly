@@ -1,4 +1,5 @@
-var RQ = RQ || {};
+var RQ = RQ || {},
+  BG = chrome.extension.getBackgroundPage();
 
 RQ.init = function(options) {
   this.Templates = {
