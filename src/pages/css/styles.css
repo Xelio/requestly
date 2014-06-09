@@ -34,7 +34,7 @@ body {
 }
 
 .content {
-  width: 600px;
+  width: 900px;
   margin: auto;
   background: #eee;
   position: absolute;
@@ -59,7 +59,7 @@ body {
   background: dimgrey;
 }
 
-.content > section {
+.content > .rule-body {
   padding: 16px;
 }
 
