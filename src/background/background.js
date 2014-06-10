@@ -9,8 +9,12 @@ BG.Methods.setupRules = function(rules) {
     return rule.status === RQ.RULE_STATUS.ACTIVE;
   });
 
-  if (BG.activeRules.length > 0) {
-    BG.Methods.registerListeners(BG.activeRules);
+  BG.Methods.registerListeners(BG.activeRules);
+};
+
+BG.Methods.addNewRule = function(rule) {
+  if (rule.status === RQ.RULE_STATUS.ACTIVE) {
+    BG.activeRules.push(rule);
   }
 };
 
@@ -33,10 +37,23 @@ BG.Methods.registerListeners = function(activeRules) {
   );
 };
 
-StorageService.getRecords({ callback: BG.Methods.setupRules });
-
 chrome.browserAction.onClicked.addListener(function () {
   chrome.tabs.create({'url': chrome.extension.getURL('src/pages/index.html')}, function(tab) {
     // Tab opened.
   });
 });
+
+chrome.storage.onChanged.addListener(function(changes, namespace) {
+  if (StorageService.DB === chrome.storage[namespace]) {
+    for (key in changes) {
+      var change = changes[key];
+
+      /* Add Rule operation */
+      if (typeof change.newValue !== 'undefined' && typeof change.oldValue === 'undefined') {
+        BG.Methods.addNewRule(change.newValue);
+      }
+    }
+  }
+});
+
+StorageService.getRecords({ callback: BG.Methods.setupRules });
