@@ -4,7 +4,7 @@ var BaseRuleModel = Backbone.Model.extend({
       name: '',
       description: '',
       ruleType: '',
-      status: 'active',
+      status: RQ.RULE_STATUS.ACTIVE,
       creationDate: ''
     }
   },

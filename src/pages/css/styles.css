@@ -1,3 +1,8 @@
+/* (Use different panel colors as available http://bootswatch.com/cerulean/)
+ * Color list for different types of rules
+ * 1. Redirect Rule: #73a839
+*/
+
 body {
   background: #bbb;
 }
@@ -36,7 +41,7 @@ body {
 .content {
   width: 700px;
   margin: auto;
-  background: #eee;
+  background: #fff;
   position: absolute;
   top: 35px;
   left: 0;
@@ -47,8 +52,7 @@ body {
 .rule-header {
   padding: 10px;
   color: white;
-  font-size: 16px;
-  font-weight: bold;
+  font-size: 14px;
 }
 
 .rq-green {

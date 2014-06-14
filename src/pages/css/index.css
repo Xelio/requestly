@@ -5,3 +5,11 @@
   padding: 3px 10px;
   right: 5px;
 }
+
+.rule-index > table {
+  font-size: 14px;
+}
+
+.rule-index > table tr:first-child th {
+  border-bottom: 0;
+}

@@ -1,11 +1,11 @@
 var RQ = RQ || {};
 
 RQ.RULE_TYPES = {
-  REDIRECT: 'redirect'
+  REDIRECT: 'Redirect'
 };
 
 RQ.RULE_STATUS = {
-  ACTIVE: 'active'
+  ACTIVE: 'Active'
 };
 
 RQ.htmlEncode = function(value){

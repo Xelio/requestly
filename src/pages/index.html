@@ -46,15 +46,17 @@
         <a href="#new" role="button" class="btn-success btn right create-rule-button">New Rule</a>
       </nav>
       <section class="rule-index">
-        <table class="table">
+        <table class="table table-striped">
           <thead>
-            <tr><th>#</th><th>Rule Name</th><th>Type</th><th>Status</th><th>Created on</th></tr>
+            <tr><th>Name & Description</th><th>Type</th><th>Status</th><th>Created on</th></tr>
           </thead>
           <tbody>
             <% _.each(rules, function(rule, index) { %>
             <tr>
-              <td><%= RQ.htmlEncode(index + 1) %></td>
-              <td><%= RQ.htmlEncode(rule.getName()) %></td>
+              <td>
+                <div class="ruleName"><%= RQ.htmlEncode(rule.getName()) %></div>
+                <div class="ruleDescription"><%= RQ.htmlEncode(rule.getDescription()) %></div>
+              </td>
               <td><%= RQ.htmlEncode(rule.getRuleType()) %></td>
               <td><%= RQ.htmlEncode(rule.getStatus()) %></td>
               <td><%= RQ.htmlEncode(rule.getCreationDate()) %></td>
