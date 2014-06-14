@@ -13,3 +13,24 @@
 .rule-index > table tr:first-child th {
   border-bottom: 0;
 }
+
+.table > tbody > tr > td {
+  border-bottom: 1px solid #ddd;
+  vertical-align: middle;
+}
+
+.ruleDescription {
+  font-size: 13px;
+  color: #888;
+  font-style: italic;
+}
+
+.table tr:hover td {
+  background-color: dodgerblue !important;
+  opacity: 0.6;
+  color: #fff;
+}
+
+.table tr:hover .ruleDescription {
+  color: #eee;
+}
