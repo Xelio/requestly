@@ -51,7 +51,11 @@
             <tr><th>Name & Description</th><th>Type</th><th>Status</th><th>Created on</th></tr>
           </thead>
           <tbody>
-            <% _.each(rules, function(rule, index) { %>
+            <% _.each(rules, function(rule, index) {
+              var d = new Date(Number(rule.getCreationDate()));
+                d = d.toUTCString().split(' ');
+                d = d[1] + ' ' + d[2] + ', ' + d[3];
+            %>
             <tr>
               <td>
                 <div class="ruleName"><%= RQ.htmlEncode(rule.getName()) %></div>
@@ -59,7 +63,7 @@
               </td>
               <td><%= RQ.htmlEncode(rule.getRuleType()) %></td>
               <td><%= RQ.htmlEncode(rule.getStatus()) %></td>
-              <td><%= RQ.htmlEncode(rule.getCreationDate()) %></td>
+              <td><%= RQ.htmlEncode(d) %></td>
             </tr>
             <% }); %>
           </tbody>

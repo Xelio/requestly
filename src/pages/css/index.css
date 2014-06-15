@@ -17,12 +17,14 @@
 .table > tbody > tr > td {
   border-bottom: 1px solid #ddd;
   vertical-align: middle;
+  color: #666;
 }
 
 .ruleDescription {
   font-size: 13px;
   color: #888;
   font-style: italic;
+  max-width: 350px;
 }
 
 .table tr:hover td {
