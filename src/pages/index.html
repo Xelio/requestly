@@ -56,7 +56,8 @@
                 d = d.toUTCString().split(' ');
                 d = d[1] + ' ' + d[2] + ', ' + d[3];
             %>
-            <tr>
+            <tr class="rule-item-row" data-name="<%=rule.getName()%>"
+                data-type="<%=rule.getRuleType()%>" data-creationDate="<%=rule.getCreationDate()%>">
               <td>
                 <div class="ruleName"><%= RQ.htmlEncode(rule.getName()) %></div>
                 <div class="ruleDescription"><%= RQ.htmlEncode(rule.getDescription()) %></div>

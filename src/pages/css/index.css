@@ -10,6 +10,10 @@
   font-size: 14px;
 }
 
+.rule-item-row {
+  cursor: pointer;
+}
+
 .rule-index > table tr:first-child th {
   border-bottom: 0;
 }
