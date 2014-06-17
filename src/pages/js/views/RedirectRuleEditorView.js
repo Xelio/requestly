@@ -22,6 +22,10 @@ var RuleEditorView = Backbone.View.extend({
       this.$el = $(options.el);
     }
 
+    if (options.model && options.model instanceof Backbone.Model) {
+      this.model = options.model;
+    }
+
     var markup = _.template(options.template, this.model.toJSON());
     this.$el.html(markup);
   },

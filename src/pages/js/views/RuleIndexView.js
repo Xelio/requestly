@@ -27,10 +27,9 @@ var RuleIndexView = Backbone.View.extend({
 
   showRuleEditor: function(event) {
     var $target = $(event.currentTarget),
-      ruleName = $target.attr('data-name'),
       creationDate = $target.attr('data-creationDate'),
       ruleType = $target.attr('data-type');
 
-    RQ.router.navigate('/edit/' + ruleType + '/' + ruleName + '/' + creationDate, { trigger: true });
+    RQ.router.navigate('/edit/' + ruleType + '/' + creationDate, { trigger: true });
   }
 });

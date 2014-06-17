@@ -43,7 +43,7 @@
       <nav class="rule-header rq-dimgrey">
         <span>Rules</span>
         <span>(<%= rules.length %>)</span>
-        <a href="#new" role="button" class="btn-success btn right create-rule-button">New Rule</a>
+        <a href="#new/Redirect" role="button" class="btn-success btn right create-rule-button">New Rule</a>
       </nav>
       <section class="rule-index">
         <table class="table table-striped">
@@ -56,8 +56,7 @@
                 d = d.toUTCString().split(' ');
                 d = d[1] + ' ' + d[2] + ', ' + d[3];
             %>
-            <tr class="rule-item-row" data-name="<%=rule.getName()%>"
-                data-type="<%=rule.getRuleType()%>" data-creationDate="<%=rule.getCreationDate()%>">
+            <tr class="rule-item-row" data-type="<%=rule.getRuleType()%>" data-creationDate="<%=rule.getCreationDate()%>">
               <td>
                 <div class="ruleName"><%= RQ.htmlEncode(rule.getName()) %></div>
                 <div class="ruleDescription"><%= RQ.htmlEncode(rule.getDescription()) %></div>

@@ -45,3 +45,21 @@ StorageService.saveRecord = function(object, callback) {
   callback = callback || function() {};
   this.DB.set(object, callback);
 };
+
+StorageService.getRecord = function() {
+
+};
+
+chrome.storage.onChanged.addListener(function(changes, namespace) {
+  if (StorageService.DB === chrome.storage[namespace]) {
+    for (key in changes) {
+      var change = changes[key];
+
+      /* Add Rule operation */
+      if (typeof change.oldValue === 'undefined' && typeof change.newValue !== 'undefined') {
+        // BG.Methods.addNewRule(change.newValue);
+        StorageService.isRecordsFetched && StorageService.records.push(change.newValue);
+      }
+    }
+  }
+});
