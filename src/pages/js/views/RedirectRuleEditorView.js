@@ -26,7 +26,7 @@ var RuleEditorView = Backbone.View.extend({
       this.model = options.model;
     }
 
-    var markup = _.template(options.template, this.model.toJSON());
+    var markup = _.template(options.template, { rule: this.model });
     this.$el.html(markup);
   },
 
@@ -49,11 +49,13 @@ var RuleEditorView = Backbone.View.extend({
   saveRule: function() {
     var ts = this.model.getTimestamp();
 
-    this.model.setCreationDate(ts);
+    // Set Creation date if not exists
+    if (!this.model.hasCreationDate()) {
+      this.model.setCreationDate(ts);
+    }
+
     this.model.save({ callback: function() {
       RQ.router.navigate('', { trigger: true });
-
-      // TODO (@sachin) Send Message to background to update the activeRules
     }});
   }
 });

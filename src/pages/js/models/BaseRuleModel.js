@@ -37,6 +37,10 @@ var BaseRuleModel = Backbone.Model.extend({
     return this.get('creationDate');
   },
 
+  hasCreationDate: function() {
+    return typeof this.get('creationDate') !== 'undefined' && this.get('creationDate');
+  },
+
   getRuleType: function() {
     return this.get('ruleType');
   },
@@ -46,7 +50,8 @@ var BaseRuleModel = Backbone.Model.extend({
   },
 
   save: function(options) {
-    var objectKey = this.getRuleType() + '_' + this.getTimestamp(),
+    var creationDate = this.hasCreationDate() ? this.getCreationDate() : this.getTimestamp(),
+      objectKey = this.getRuleType() + '_' + creationDate,
       storageObject = {},
       storageService = BG.StorageService;
 

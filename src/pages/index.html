@@ -9,27 +9,30 @@
     <!-- All templates go here -->
     <script type="text/template" id="rule-editor-template">
       <nav class="rule-header rq-green">
-        <span>Create Redirect Request Rule</span>
+        <span>Redirect Request Rule</span>
       </nav>
       <section class="rule-body">
         <div class="input-group name-container">
           <span class="input-group-addon">Rule Name</span>
-          <input type="text" class="form-control rule-name-input" placeholder="">
+          <input type="text" class="form-control rule-name-input" placeholder="" value="<%=rule.getName()%>">
         </div>
 
         <div class="description-container">
           <div>Rule Description (Optional)</div>
-          <textarea class="rule-description" placeholder="e.g. Redirecting app.js on qa environment to dev environment"></textarea>
+          <textarea class="rule-description"
+            placeholder="e.g. Redirecting app.js on qa environment to dev environment"><%=rule.getDescription()%></textarea>
         </div>
 
         <div class="input-group source-container">
           <span class="input-group-addon">Source</span>
-          <input type="url" class="form-control source-url-input" placeholder="e.g. http://www.yahoo.com/">
+          <input type="url" class="form-control source-url-input"
+             placeholder="e.g. http://www.yahoo.com/" value="<%=rule.getSource()%>">
         </div>
 
         <div class="input-group destination-container">
           <span class="input-group-addon">Destination</span>
-          <input type="url" class="form-control destination-url-input" placeholder="e.g. http://www.google.com/">
+          <input type="url" class="form-control destination-url-input"
+             placeholder="e.g. http://www.google.com/" value="<%=rule.getDestination()%>">
         </div>
 
         <div class="buttons-container">

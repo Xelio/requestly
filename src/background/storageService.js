@@ -46,20 +46,35 @@ StorageService.saveRecord = function(object, callback) {
   this.DB.set(object, callback);
 };
 
-StorageService.getRecord = function() {
-
+StorageService.getRecord = function(key, callback) {
+  callback = callback || function() { console.log('Default handler called when record is fetched:', key) };
+  StorageService.DB.get(key, callback);
 };
 
 chrome.storage.onChanged.addListener(function(changes, namespace) {
   if (StorageService.DB === chrome.storage[namespace]) {
-    for (key in changes) {
-      var change = changes[key];
+    for (changedObjectkey in changes) {
+      var change = changes[changedObjectkey],
+        objectExists = false;
 
-      /* Add Rule operation */
+      /* Add/Edit Rule operation */
       if (typeof change.oldValue === 'undefined' && typeof change.newValue !== 'undefined') {
-        // BG.Methods.addNewRule(change.newValue);
-        StorageService.isRecordsFetched && StorageService.records.push(change.newValue);
+        for (var i = 0; i < StorageService.records.length; i++) {
+          var recordKey = StorageService.records[i].ruleType + '_' + StorageService.records[i].creationDate;
+
+          if (recordKey === changedObjectkey) {
+            StorageService.records[i] = change.newValue;
+            objectExists = true;
+            break;
+          }
+        }
+
+        if (!objectExists) {
+          StorageService.records.push(change.newValue);
+        }
       }
+
+      /* Delete Rule Operation */
     }
   }
 });

@@ -20,8 +20,13 @@ RQ.Router = Backbone.Router.extend({
   },
 
   showRuleEditor: function(ruleType, date) {
-    //TODO: fetch model here and render the view
-    var model = new RQ.RULE_MODEL(ruleType.toUpperCase())();
-    RQ.Views.ruleEditView.render({template: RQ.Templates.RULE_EDITOR_TEMPLATE, el: '.content', model: model });
+    var objectKey = ruleType + '_' + date,
+      that = this;
+
+    BG.StorageService.getRecord(objectKey, function(modelJSON) {
+      modelJSON = modelJSON[objectKey];
+      var model = new that.ruleModelMap[ruleType.toUpperCase()](modelJSON);
+      RQ.Views.ruleEditView.render({template: RQ.Templates.RULE_EDITOR_TEMPLATE, el: '.content', model: model });
+    });
   }
 });
