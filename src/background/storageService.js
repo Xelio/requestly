@@ -51,16 +51,28 @@ StorageService.getRecord = function(key, callback) {
   StorageService.DB.get(key, callback);
 };
 
+StorageService.removeRecord = function(key, callback) {
+  callback = callback || function() { console.log('Default handler called when record is removed:', key) };
+  StorageService.DB.remove(key, callback);
+};
+
 chrome.storage.onChanged.addListener(function(changes, namespace) {
   if (StorageService.DB === chrome.storage[namespace]) {
     for (changedObjectkey in changes) {
       var change = changes[changedObjectkey],
-        objectExists = false;
+        objectExists = false,
+        i,
+        recordKey;
+
+      /*
+        StorageService.records are updated on every add/edit/delete operation
+        So that background rules can be updated which are executed when each request URL is intercepted
+       */
 
       /* Add/Edit Rule operation */
       if (typeof change.oldValue === 'undefined' && typeof change.newValue !== 'undefined') {
-        for (var i = 0; i < StorageService.records.length; i++) {
-          var recordKey = StorageService.records[i].ruleType + '_' + StorageService.records[i].creationDate;
+        for (i = 0; i < StorageService.records.length; i++) {
+          recordKey = StorageService.records[i].ruleType + '_' + StorageService.records[i].creationDate;
 
           if (recordKey === changedObjectkey) {
             StorageService.records[i] = change.newValue;
@@ -75,6 +87,16 @@ chrome.storage.onChanged.addListener(function(changes, namespace) {
       }
 
       /* Delete Rule Operation */
+      if (typeof change.oldValue !== 'undefined' && typeof change.newValue === 'undefined') {
+        for (i = 0; i < StorageService.records.length; i++) {
+          recordKey = StorageService.records[i].ruleType + '_' + StorageService.records[i].creationDate;
+
+          if (recordKey === changedObjectkey) {
+            StorageService.records = StorageService.records.splice(i, 1);
+            break;
+          }
+        }
+      }
     }
   }
 });

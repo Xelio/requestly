@@ -28,6 +28,7 @@
   font-size: 13px;
   color: #888;
   font-style: italic;
+  width: 350px;
   max-width: 350px;
 }
 
@@ -37,6 +38,14 @@
   color: #fff;
 }
 
+.delete-rule-icon {
+  visibility: hidden;
+}
+
 .table tr:hover .ruleDescription {
   color: #eee;
+}
+
+.table tr:hover .delete-rule-icon {
+  visibility: visible;
 }

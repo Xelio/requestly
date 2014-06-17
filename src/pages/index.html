@@ -51,7 +51,7 @@
       <section class="rule-index">
         <table class="table table-striped">
           <thead>
-            <tr><th>Name & Description</th><th>Type</th><th>Status</th><th>Created on</th></tr>
+            <tr><th>Name & Description</th><th>Type</th><th>Status</th><th>Created on</th><th></th></tr>
           </thead>
           <tbody>
             <% _.each(rules, function(rule, index) {
@@ -67,6 +67,7 @@
               <td><%= RQ.htmlEncode(rule.getRuleType()) %></td>
               <td><%= RQ.htmlEncode(rule.getStatus()) %></td>
               <td><%= RQ.htmlEncode(d) %></td>
+              <td><span class="glyphicon glyphicon-trash delete-rule-icon"></span></td>
             </tr>
             <% }); %>
           </tbody>
