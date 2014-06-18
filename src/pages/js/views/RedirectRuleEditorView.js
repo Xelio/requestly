@@ -7,6 +7,7 @@ var RuleEditorView = Backbone.View.extend({
   events: {
     'keyup .rule-name-input': 'updateRuleName',
     'keyup .rule-description': 'updateRuleDescription',
+    'change .rule-operator-select': 'updateRuleOperator',
     'keyup .source-url-input': 'updateRuleSourceUrl',
     'keyup .destination-url-input': 'updateRuleDestinationUrl',
     'click #save-redirect-rule': 'saveRule'
@@ -38,8 +39,15 @@ var RuleEditorView = Backbone.View.extend({
     this.model.setDescription(event.target.value);
   },
 
+  updateRuleOperator: function(event) {
+    this.model.setSourceOperator(event.target.selectedOptions[0].value);
+  },
+
   updateRuleSourceUrl: function(event) {
-    // this.model.setSource(event.target.value);
+    var index = $(event.target).attr('data-index'),
+      value = event.target.value;
+
+    this.model.setSourceValue(value, Number(index));
   },
 
   updateRuleDestinationUrl: function(event) {

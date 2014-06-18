@@ -6,6 +6,26 @@ BG.Methods.setupRules = function() {
   BG.Methods.registerListeners();
 };
 
+BG.Methods.matchesRedirectRule = function(rule, url) {
+  var source = rule.source,
+    operator = source.operator,
+    value;
+
+  for (var i = 0; i < source.values.length; i++) {
+    value = source.values[i];
+
+    if (operator === RQ.RULE_OPERATORS.EQUALS && value === url) {
+      return true;
+    }
+
+    if (operator === RQ.RULE_OPERATORS.CONTAINS && url.indexOf(value) !== -1) {
+      return true;
+    }
+  }
+
+  return false;
+};
+
 BG.Methods.registerListeners = function() {
   chrome.webRequest.onBeforeRequest.addListener(
     function(details) {
@@ -15,11 +35,15 @@ BG.Methods.registerListeners = function() {
         if (rule.status !== RQ.RULE_STATUS.ACTIVE) {
           continue;
         }
-          // Setup Redirect Rule
-        if (rule.ruleType === RQ.RULE_TYPES.REDIRECT && details.url === rule.source) {
-          return { redirectUrl: rule.destination };
-        }
 
+        // Setup Redirect Rule
+        switch(rule.ruleType) {
+          case RQ.RULE_TYPES.REDIRECT:
+            if (BG.Methods.matchesRedirectRule(rule, details.url)) {
+              return { redirectUrl: rule.destination };
+            }
+            break;
+        }
       }
     },
     {
