@@ -1,9 +1,9 @@
 {
-  "name": "Requestly - Chrome Extension to play with network calls",
+  "name": "Requestly",
 
   "version": "1.0.0",
   "manifest_version": 2,
-  "description": "Change request URLs, headers. Redirect requests, Cancel the requests",
+  "description": "Chrome Extension to redirect HTTP requests",
 
   "background": {
     "scripts": [
