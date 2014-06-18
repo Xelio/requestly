@@ -19,14 +19,14 @@
         </div>
 
         <div class="description-container">
-          <div>Rule Description (Optional)</div>
+          <div class="title">Rule Description (Optional)</div>
           <textarea class="rule-description"
             placeholder="e.g. Redirecting app.js on qa environment to dev environment"><%=rule.getDescription()%></textarea>
         </div>
 
         <div class="source-container">
           <% var source = rule.getSource(); %>
-          <div>Source</div>
+          <div class="title">Source</div>
           <div class="well well-sm">
             <div class="dropdown-container">
               <select class="rule-operator-select">

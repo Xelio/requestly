@@ -1,3 +1,36 @@
 .dropdown-container {
+  padding-bottom: 10px;
+}
+
+.input-group {
   padding: 10px 0;
+}
+
+.description-container {
+  padding-bottom: 10px;
+}
+
+.title {
+  padding: 5px 0;
+  color: #555;
+}
+
+.rule-description {
+  resize: none;
+  height: 100px;
+  width: 100%;
+  margin: 0;
+  border-radius: 2px;
+  padding: 5px;
+}
+
+.buttons-container .btn {
+  float: right;
+  border-radius: 2px;
+  margin: 5px;
+}
+
+#save-redirect-rule {
+  background-color: #5B9027;
+  border-color: #5B9027;
 }
