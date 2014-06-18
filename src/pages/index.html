@@ -2,8 +2,9 @@
   <head>
     <title>Requestly - Play with Network Calls</title>
     <link href="/src/libs/css/bootstrap.css" rel="stylesheet">
-    <link href="/src/pages/css/index.css" rel="stylesheet">
     <link href="/src/pages/css/styles.css" rel="stylesheet">
+    <link href="/src/pages/css/index.css" rel="stylesheet">
+    <link href="/src/pages/css/redirect_rule.css" rel="stylesheet">
   </head>
   <body>
     <!-- All templates go here -->
@@ -23,10 +24,28 @@
             placeholder="e.g. Redirecting app.js on qa environment to dev environment"><%=rule.getDescription()%></textarea>
         </div>
 
-        <div class="input-group source-container">
-          <span class="input-group-addon">Source</span>
-          <input type="url" class="form-control source-url-input"
-             placeholder="e.g. http://www.yahoo.com/" value="<%=rule.getSource()%>">
+        <div class="source-container">
+          <% var source = rule.getSource(); %>
+          <div>Source</div>
+          <div class="well well-sm">
+            <div class="dropdown-container">
+              <select class="rule-operator-select">
+                <option value="<%= RQ.RULE_OPERATORS.EQUALS %>" "<% if(source.operator === RQ.RULE_OPERATORS.EQUALS) { %> selected <% } %>">
+                  Equals
+                </option>
+                <option value="<%= RQ.RULE_OPERATORS.CONTAINS %>" <% if(source.operator === RQ.RULE_OPERATORS.CONTAINS) { %> selected <% } %> >
+                  Contains
+                </option>
+              </select>
+            </div>
+
+            <% _.each(source.values, function(value, index) { %>
+                <div class="source-value-container">
+                  <input type="url" class="form-control source-url-input"
+                     placeholder="e.g. http://www.yahoo.com/" value="<%=value%>" data-index="<%=index%>"/>
+                </div>
+            <% }); %>
+          </div>
         </div>
 
         <div class="input-group destination-container">

@@ -7,6 +7,19 @@ body {
   background: #bbb;
 }
 
+select {
+  padding: 6px 12px;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 1;
+  color: #555;
+  text-align: center;
+  background-color: #eee;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
 .header {
   background: #4c66a4;
   height: 35px;

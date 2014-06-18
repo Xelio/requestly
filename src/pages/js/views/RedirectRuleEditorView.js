@@ -39,7 +39,7 @@ var RuleEditorView = Backbone.View.extend({
   },
 
   updateRuleSourceUrl: function(event) {
-    this.model.setSource(event.target.value);
+    // this.model.setSource(event.target.value);
   },
 
   updateRuleDestinationUrl: function(event) {
