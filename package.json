@@ -1,0 +1,34 @@
+{
+  "name": "Requestly",
+  "version": "1.0.0",
+  "description": "A Chrome extension to play with your network requests",
+  "main": "app.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/blunderboy/requestly"
+  },
+  "keywords": [
+    "HTTP",
+    "HTTPS",
+    "Network",
+    "Requests",
+    "Chrome",
+    "Extension"
+  ],
+  "author": "Sachin Jain <sachinjain024@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/blunderboy/requestly/issues"
+  },
+  "homepage": "https://github.com/blunderboy/requestly",
+  "devDependencies": {
+    "grunt": "~0.4.2",
+    "grunt-zipup": "~0.1.6"
+  }
+}
