@@ -32,6 +32,10 @@
   max-width: 350px;
 }
 
+.status-cell {
+  width: 110px;
+}
+
 .table tr:hover td {
   background-color: dodgerblue !important;
   opacity: 0.6;
@@ -48,4 +52,17 @@
 
 .table tr:hover .delete-rule-icon {
   visibility: visible;
+}
+
+/* Redirect Rule Row specific properties */
+.toggle-status-icon.redirect.active {
+  color: #5B9027;
+}
+
+.toggle-status-icon.redirect.inactive {
+  color: #ccc;
+}
+
+.table tr:hover .toggle-status-icon.active {
+  color: white;
 }

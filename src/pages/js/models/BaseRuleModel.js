@@ -49,6 +49,10 @@ var BaseRuleModel = Backbone.Model.extend({
     return this.get('status');
   },
 
+  setStatus: function(status) {
+    this.set('status', status);
+  },
+
   save: function(options) {
     var creationDate = this.hasCreationDate() ? this.getCreationDate() : this.getTimestamp(),
       objectKey = this.getRuleType() + '_' + creationDate,

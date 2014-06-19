@@ -74,18 +74,25 @@
           </thead>
           <tbody>
             <% _.each(rules, function(rule, index) {
-              var d = new Date(Number(rule.getCreationDate()));
-                d = d.toUTCString().split(' ');
-                d = d[1] + ' ' + d[2] + ', ' + d[3];
+              var date = new Date(Number(rule.getCreationDate())),
+                  ruleType = rule.getRuleType(),
+                  ruleStatus = rule.getStatus();
+
+              date = date.toUTCString().split(' ');
+              date = date[1] + ' ' + date[2] + ', ' + date[3];
             %>
             <tr class="rule-item-row" data-type="<%=rule.getRuleType()%>" data-creationDate="<%=rule.getCreationDate()%>">
               <td>
                 <div class="ruleName"><%= RQ.htmlEncode(rule.getName()) %></div>
                 <div class="ruleDescription"><%= RQ.htmlEncode(rule.getDescription()) %></div>
               </td>
-              <td><%= RQ.htmlEncode(rule.getRuleType()) %></td>
-              <td><%= RQ.htmlEncode(rule.getStatus()) %></td>
-              <td><%= RQ.htmlEncode(d) %></td>
+              <td><%= RQ.htmlEncode(ruleType) %></td>
+              <td class="status-cell"><%= RQ.htmlEncode(ruleStatus) %>
+                <span class="glyphicon glyphicon-ok-sign <%= ruleStatus %> <%= ruleType %> toggle-status-icon"
+                  title="Click to toggle Rule Status">
+                </span>
+              </td>
+              <td><%= RQ.htmlEncode(date) %></td>
               <td><span class="glyphicon glyphicon-trash delete-rule-icon"></span></td>
             </tr>
             <% }); %>

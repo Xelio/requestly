@@ -5,7 +5,8 @@ RQ.RULE_TYPES = {
 };
 
 RQ.RULE_STATUS = {
-  ACTIVE: 'Active'
+  ACTIVE: 'Active',
+  INACTIVE: 'Inactive'
 };
 
 RQ.RULE_KEYS = {
