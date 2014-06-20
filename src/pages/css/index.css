@@ -32,23 +32,13 @@
   width: 110px;
 }
 
-.table tr:hover td {
-  background-color: dodgerblue !important;
-  opacity: 0.6;
-  color: #fff;
+table tr:hover td {
+  background-color: #d2e6f5 !important;
+  border-color: #aacdf0 !important;
 }
 
 .action-icon {
-  visibility: hidden;
   margin-left: 5px;
-}
-
-.table tr:hover .ruleDescription {
-  color: #eee;
-}
-
-.table tr:hover .action-icon {
-  visibility: visible;
 }
 
 /* Redirect Rule Row specific properties */
@@ -58,8 +48,4 @@
 
 .toggle-status-icon.redirect.inactive {
   color: #ccc;
-}
-
-.table tr:hover .toggle-status-icon.active {
-  color: white;
 }
