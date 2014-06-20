@@ -19,6 +19,10 @@ select {
   cursor: pointer;
 }
 
+.glyphicon {
+  cursor: pointer;
+}
+
 .header {
   background: #4c66a4;
   height: 35px;

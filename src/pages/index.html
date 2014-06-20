@@ -93,7 +93,10 @@
                 </span>
               </td>
               <td><%= RQ.htmlEncode(date) %></td>
-              <td><span class="glyphicon glyphicon-trash delete-rule-icon"></span></td>
+              <td>
+                <span class="glyphicon glyphicon-trash delete-rule-icon action-icon"></span>
+                <span class="glyphicon glyphicon-chevron-right show-editor-icon action-icon"></span>
+              </td>
             </tr>
             <% }); %>
           </tbody>

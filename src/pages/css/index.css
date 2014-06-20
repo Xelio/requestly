@@ -10,10 +10,6 @@
   font-size: 14px;
 }
 
-.rule-item-row {
-  cursor: pointer;
-}
-
 .rule-index > table tr:first-child th {
   border-bottom: 0;
 }
@@ -42,15 +38,16 @@
   color: #fff;
 }
 
-.delete-rule-icon {
+.action-icon {
   visibility: hidden;
+  margin-left: 5px;
 }
 
 .table tr:hover .ruleDescription {
   color: #eee;
 }
 
-.table tr:hover .delete-rule-icon {
+.table tr:hover .action-icon {
   visibility: visible;
 }
 

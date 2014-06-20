@@ -3,7 +3,7 @@ var RuleIndexView = Backbone.View.extend({
   el: '.content',
 
   events: {
-    'click .rule-item-row': 'showRuleEditor',
+    'click .show-editor-icon': 'showRuleEditor',
     'click .toggle-status-icon': 'toggleStatus',
     'click .delete-rule-icon': 'deleteRule'
   },
@@ -28,9 +28,9 @@ var RuleIndexView = Backbone.View.extend({
   },
 
   showRuleEditor: function(event) {
-    var $target = $(event.currentTarget),
-      creationDate = $target.attr('data-creationDate'),
-      ruleType = $target.attr('data-type');
+    var $ruleItemRow = $(event.target).parents('.rule-item-row'),
+      creationDate = $ruleItemRow.attr('data-creationDate'),
+      ruleType = $ruleItemRow.attr('data-type');
 
     RQ.router.navigate('/edit/' + ruleType + '/' + creationDate, { trigger: true });
   },
