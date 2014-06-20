@@ -6,6 +6,7 @@ var RuleEditorView = Backbone.View.extend({
 
   events: {
     'keyup .rule-name-input': 'updateRuleName',
+    'change .rule-status-select': 'updateRuleStatus',
     'keyup .rule-description': 'updateRuleDescription',
     'change .rule-operator-select': 'updateRuleOperator',
     'keyup .source-url-input': 'updateRuleSourceUrl',
@@ -33,6 +34,10 @@ var RuleEditorView = Backbone.View.extend({
 
   updateRuleName: function(event) {
     this.model.setName(event.target.value);
+  },
+
+  updateRuleStatus: function(event) {
+    this.model.setStatus(event.target.selectedOptions[0].value);
   },
 
   updateRuleDescription: function(event) {

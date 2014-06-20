@@ -18,6 +18,21 @@
           <input type="text" class="form-control rule-name-input" placeholder="" value="<%=rule.getName()%>">
         </div>
 
+        <% var status = rule.getStatus() %>
+        <div class="rule-status-container">
+          <span class="title">Status</span>
+          <span class="dropdown-container">
+            <select class="rule-status-select">
+              <option value="<%= RQ.RULE_STATUS.ACTIVE %>" "<% if(status === RQ.RULE_STATUS.ACTIVE) { %> selected <% } %>">
+              Active
+              </option>
+              <option value="<%= RQ.RULE_STATUS.INACTIVE %>" <% if(status === RQ.RULE_STATUS.INACTIVE) { %> selected <% } %> >
+              Inactive
+              </option>
+            </select>
+          </span>
+        </div>
+
         <div class="description-container">
           <div class="title">Rule Description (Optional)</div>
           <textarea class="rule-description"
