@@ -8,6 +8,49 @@
   </head>
   <body>
     <!-- All templates go here -->
+    <script type="text/template" id="rule-index-template">
+      <nav class="rule-header rq-dimgrey">
+        <span>Rules</span>
+        <span>(<%= rules.length %>)</span>
+        <a href="#new/Redirect" role="button" class="btn-success btn right create-rule-button">New Rule</a>
+      </nav>
+      <section class="rule-index">
+        <table class="table table-striped">
+          <thead>
+          <tr><th>Name & Description</th><th>Type</th><th>Status</th><th>Created on</th><th></th></tr>
+          </thead>
+          <tbody>
+          <% _.each(rules, function(rule, index) {
+          var date = new Date(Number(rule.getCreationDate())),
+          ruleType = rule.getRuleType(),
+          ruleStatus = rule.getStatus();
+
+          date = date.toUTCString().split(' ');
+          date = date[1] + ' ' + date[2] + ', ' + date[3];
+          %>
+          <tr class="rule-item-row" data-type="<%=rule.getRuleType()%>" data-creationDate="<%=rule.getCreationDate()%>">
+            <td>
+              <div class="ruleName"><%= RQ.htmlEncode(rule.getName()) %></div>
+              <div class="ruleDescription"><%= RQ.htmlEncode(rule.getDescription()) %></div>
+            </td>
+            <td><%= RQ.htmlEncode(ruleType) %></td>
+            <td class="status-cell"><%= RQ.htmlEncode(ruleStatus) %>
+                <span class="glyphicon glyphicon-ok-sign <%= ruleStatus %> <%= ruleType %> toggle-status-icon"
+                      title="Click to toggle Rule Status">
+                </span>
+            </td>
+            <td><%= RQ.htmlEncode(date) %></td>
+            <td>
+              <span class="glyphicon glyphicon-trash delete-rule-icon action-icon"></span>
+              <span class="glyphicon glyphicon-chevron-right show-editor-icon action-icon"></span>
+            </td>
+          </tr>
+          <% }); %>
+          </tbody>
+        </table>
+      </section>
+    </script>
+
     <script type="text/template" id="rule-editor-template">
       <nav class="rule-header rq-green">
         <span>Redirect Request Rule</span>
@@ -73,49 +116,6 @@
           <a id="save-redirect-rule" class="btn btn-success">Save</a>
           <a href="#" class="btn btn-default">Cancel</a>
         </div>
-      </section>
-    </script>
-
-    <script type="text/template" id="rule-index-template">
-      <nav class="rule-header rq-dimgrey">
-        <span>Rules</span>
-        <span>(<%= rules.length %>)</span>
-        <a href="#new/Redirect" role="button" class="btn-success btn right create-rule-button">New Rule</a>
-      </nav>
-      <section class="rule-index">
-        <table class="table table-striped">
-          <thead>
-            <tr><th>Name & Description</th><th>Type</th><th>Status</th><th>Created on</th><th></th></tr>
-          </thead>
-          <tbody>
-            <% _.each(rules, function(rule, index) {
-              var date = new Date(Number(rule.getCreationDate())),
-                  ruleType = rule.getRuleType(),
-                  ruleStatus = rule.getStatus();
-
-              date = date.toUTCString().split(' ');
-              date = date[1] + ' ' + date[2] + ', ' + date[3];
-            %>
-            <tr class="rule-item-row" data-type="<%=rule.getRuleType()%>" data-creationDate="<%=rule.getCreationDate()%>">
-              <td>
-                <div class="ruleName"><%= RQ.htmlEncode(rule.getName()) %></div>
-                <div class="ruleDescription"><%= RQ.htmlEncode(rule.getDescription()) %></div>
-              </td>
-              <td><%= RQ.htmlEncode(ruleType) %></td>
-              <td class="status-cell"><%= RQ.htmlEncode(ruleStatus) %>
-                <span class="glyphicon glyphicon-ok-sign <%= ruleStatus %> <%= ruleType %> toggle-status-icon"
-                  title="Click to toggle Rule Status">
-                </span>
-              </td>
-              <td><%= RQ.htmlEncode(date) %></td>
-              <td>
-                <span class="glyphicon glyphicon-trash delete-rule-icon action-icon"></span>
-                <span class="glyphicon glyphicon-chevron-right show-editor-icon action-icon"></span>
-              </td>
-            </tr>
-            <% }); %>
-          </tbody>
-          </table>
       </section>
     </script>
 
