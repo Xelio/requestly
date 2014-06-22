@@ -69,9 +69,11 @@ var RuleIndexView = Backbone.View.extend({
       objectKey = $ruleItemRow.attr('data-type') + '_' + $ruleItemRow.attr('data-creationDate'),
       that = this;
 
-    BG.StorageService.removeRecord(objectKey, function() {
-      that.render({ template: RQ.Templates.RULE_INDEX_TEMPLATE });
-    });
+    if (window.confirm(RQ.MESSAGES.DELETE_RULE)) {
+      BG.StorageService.removeRecord(objectKey, function() {
+        that.render({ template: RQ.Templates.RULE_INDEX_TEMPLATE });
+      });
+    }
 
     return false;
   }
