@@ -30,7 +30,7 @@
           %>
           <tr class="rule-item-row" data-type="<%=rule.getRuleType()%>" data-creationDate="<%=rule.getCreationDate()%>">
             <td>
-              <div class="ruleName"><%= RQ.htmlEncode(rule.getName()) %></div>
+              <a class="ruleName"><%= RQ.htmlEncode(rule.getName()) %></a>
               <div class="ruleDescription"><%= RQ.htmlEncode(rule.getDescription()) %></div>
             </td>
             <td><%= RQ.htmlEncode(ruleType) %></td>
@@ -42,7 +42,6 @@
             <td><%= RQ.htmlEncode(date) %></td>
             <td>
               <span class="glyphicon glyphicon-trash delete-rule-icon action-icon"></span>
-              <span class="glyphicon glyphicon-chevron-right show-editor-icon action-icon"></span>
             </td>
           </tr>
           <% }); %>

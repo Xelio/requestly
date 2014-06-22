@@ -3,7 +3,7 @@ var RuleIndexView = Backbone.View.extend({
   el: '.content',
 
   events: {
-    'click .show-editor-icon': 'showRuleEditor',
+    'click .ruleName': 'showRuleEditor',
     'click .toggle-status-icon': 'toggleStatus',
     'click .delete-rule-icon': 'deleteRule'
   },

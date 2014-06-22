@@ -20,6 +20,14 @@
   color: #666;
 }
 
+.ruleName {
+  cursor: pointer;
+}
+
+.ruleName:hover {
+  text-decoration: none;
+}
+
 .ruleDescription {
   font-size: 13px;
   color: #888;
