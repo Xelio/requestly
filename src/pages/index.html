@@ -50,7 +50,7 @@
       </section>
     </script>
 
-    <script type="text/template" id="rule-editor-template">
+    <script type="text/template" id="redirect-rule-editor-template">
       <nav class="rule-header rq-green">
         <span>Redirect Request Rule</span>
       </nav>
@@ -118,6 +118,10 @@
       </section>
     </script>
 
+    <script type="text/template" id="cancel-rule-editor-template">
+      Cancel editor will be shown here
+    </script>
+
     <!-- End of templates sections -->
 
     <div class="header">
@@ -140,12 +144,14 @@
     <!-- Backbone Models -->
     <script type="text/javascript" src="/src/pages/js/models/BaseRuleModel.js"></script>
     <script type="text/javascript" src="/src/pages/js/models/RedirectRuleModel.js"></script>
+    <script type="text/javascript" src="/src/pages/js/models/CancelRuleModel.js"></script>
 
     <!-- Backbone Collections -->
     <script type="text/javascript" src="/src/pages/js/collections/RulesCollection.js"></script>
 
     <!-- Backbone Views -->
     <script type="text/javascript" src="/src/pages/js/views/RedirectRuleEditorView.js"></script>
+    <script type="text/javascript" src="/src/pages/js/views/CancelRuleEditorView.js"></script>
     <script type="text/javascript" src="/src/pages/js/views/RuleIndexView.js"></script>
 
     <script type="text/javascript" src="/src/pages/js/app.js"></script>

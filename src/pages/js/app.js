@@ -3,7 +3,8 @@ var RQ = RQ || {},
 
 RQ.init = function(options) {
   this.Templates = {
-    RULE_EDITOR_TEMPLATE: $('#rule-editor-template').html(),
+    REDIRECT_RULE_EDITOR_TEMPLATE: $('#redirect-rule-editor-template').html(),
+    CANCEL_RULE_EDITOR_TEMPLATE: $('#cancel-rule-editor-template').html(),
     RULE_INDEX_TEMPLATE: $('#rule-index-template').html()
   };
 
@@ -16,7 +17,8 @@ RQ.init = function(options) {
   };
 
   this.Views = {
-    ruleEditView: new RuleEditorView(),
+    redirectRuleEditView: new RedirectRuleEditorView(),
+    cancelRuleEditView: new CancelRuleEditorView(),
     ruleIndexView: new RuleIndexView()
   };
 

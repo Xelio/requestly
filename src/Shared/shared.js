@@ -1,7 +1,8 @@
 var RQ = RQ || {};
 
 RQ.RULE_TYPES = {
-  REDIRECT: 'Redirect'
+  REDIRECT: 'Redirect',
+  CANCEL: 'Cancel'
 };
 
 RQ.RULE_STATUS = {
@@ -17,6 +18,10 @@ RQ.RULE_KEYS = {
 RQ.RULE_OPERATORS = {
   EQUALS: 'Equals',
   CONTAINS: 'Contains'
+};
+
+RQ.RESPONSE_CODES = {
+  NOT_FOUND: 404
 };
 
 RQ.MESSAGES = {

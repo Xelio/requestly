@@ -7,7 +7,26 @@ RQ.Router = Backbone.Router.extend({
 
   ruleModelMap: {
     BASE: BaseRuleModel,
-    REDIRECT: RedirectRuleModel
+    REDIRECT: RedirectRuleModel,
+    CANCEL: CancelRuleModel
+  },
+
+  getRuleView: function(ruleType) {
+    var ruleViewMap = {
+      REDIRECT: RQ.Views.redirectRuleEditView,
+      CANCEL: RQ.Views.cancelRuleEditView
+    };
+
+    return ruleViewMap[ruleType];
+  },
+
+  getRuleEditorTemplate: function(ruleType) {
+    var ruleTemplateMap = {
+      REDIRECT: RQ.Templates.REDIRECT_RULE_EDITOR_TEMPLATE,
+      CANCEL: RQ.Templates.CANCEL_RULE_EDITOR_TEMPLATE
+    };
+
+    return ruleTemplateMap[ruleType];
   },
 
   showRulesList: function() {
@@ -15,8 +34,12 @@ RQ.Router = Backbone.Router.extend({
   },
 
   showRuleCreator: function(ruleType) {
-    var model = new this.ruleModelMap[ruleType.toUpperCase()]();
-    RQ.Views.ruleEditView.render({template: RQ.Templates.RULE_EDITOR_TEMPLATE, el: '.content', model: model });
+    var ruleTypeUpperCase = ruleType.toUpperCase(),
+      template = this.getRuleEditorTemplate(ruleTypeUpperCase),
+      editorView = this.getRuleView(ruleTypeUpperCase),
+      model = new this.ruleModelMap[ruleTypeUpperCase]();
+
+    editorView.render({template: template, el: '.content', model: model });
   },
 
   showRuleEditor: function(ruleType, date) {
@@ -24,9 +47,15 @@ RQ.Router = Backbone.Router.extend({
       that = this;
 
     BG.StorageService.getRecord(objectKey, function(modelJSON) {
+      var ruleTypeUpperCase = ruleType.toUpperCase(),
+        template = that.getRuleEditorTemplate(ruleTypeUpperCase),
+        editorView = that.getRuleView(ruleTypeUpperCase),
+        model;
+
       modelJSON = modelJSON[objectKey];
-      var model = new that.ruleModelMap[ruleType.toUpperCase()](modelJSON);
-      RQ.Views.ruleEditView.render({template: RQ.Templates.RULE_EDITOR_TEMPLATE, el: '.content', model: model });
+      model = new that.ruleModelMap[ruleTypeUpperCase](modelJSON);
+
+      editorView.render({template: template, el: '.content', model: model });
     });
   }
 });

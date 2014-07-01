@@ -1,16 +1,13 @@
-var RedirectRuleEditorView = Backbone.View.extend({
+var CancelRuleEditorView = Backbone.View.extend({
 
   el: '.content',
 
-  Model: RedirectRuleModel,
+  Model: CancelRuleModel,
 
   events: {
     'keyup .rule-name-input': 'updateRuleName',
     'change .rule-status-select': 'updateRuleStatus',
     'keyup .rule-description': 'updateRuleDescription',
-    'change .rule-operator-select': 'updateRuleOperator',
-    'keyup .source-url-input': 'updateRuleSourceUrl',
-    'keyup .destination-url-input': 'updateRuleDestinationUrl',
     'click #save-redirect-rule': 'saveRule'
   },
 
@@ -42,21 +39,6 @@ var RedirectRuleEditorView = Backbone.View.extend({
 
   updateRuleDescription: function(event) {
     this.model.setDescription(event.target.value);
-  },
-
-  updateRuleOperator: function(event) {
-    this.model.setSourceOperator(event.target.selectedOptions[0].value);
-  },
-
-  updateRuleSourceUrl: function(event) {
-    var index = $(event.target).attr('data-index'),
-      value = event.target.value;
-
-    this.model.setSourceValue(value, Number(index));
-  },
-
-  updateRuleDestinationUrl: function(event) {
-    this.model.setDestination(event.target.value);
   },
 
   saveRule: function() {
