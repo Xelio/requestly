@@ -80,6 +80,6 @@ select {
   background: dimgrey;
 }
 
-.content > .rule-body {
+.content .rule-body {
   padding: 16px;
 }

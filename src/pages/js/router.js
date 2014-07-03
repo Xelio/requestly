@@ -11,13 +11,9 @@ RQ.Router = Backbone.Router.extend({
     CANCEL: CancelRuleModel
   },
 
-  getRuleView: function(ruleType) {
-    var ruleViewMap = {
-      REDIRECT: RQ.Views.redirectRuleEditView,
-      CANCEL: RQ.Views.cancelRuleEditView
-    };
-
-    return ruleViewMap[ruleType];
+  ruleViewMap: {
+    REDIRECT: RedirectRuleEditorView,
+    CANCEL: CancelRuleEditorView
   },
 
   getRuleEditorTemplate: function(ruleType) {
@@ -30,16 +26,17 @@ RQ.Router = Backbone.Router.extend({
   },
 
   showRulesList: function() {
-    RQ.Views.ruleIndexView.render({template: RQ.Templates.RULE_INDEX_TEMPLATE, el: '.content'});
+    var ruleIndexView = new RuleIndexView();
+    RQ.showView(ruleIndexView, { template: RQ.Templates.RULE_INDEX_TEMPLATE });
   },
 
   showRuleCreator: function(ruleType) {
     var ruleTypeUpperCase = ruleType.toUpperCase(),
       template = this.getRuleEditorTemplate(ruleTypeUpperCase),
-      editorView = this.getRuleView(ruleTypeUpperCase),
+      editorView = new this.ruleViewMap[ruleTypeUpperCase](),
       model = new this.ruleModelMap[ruleTypeUpperCase]();
 
-    editorView.render({template: template, el: '.content', model: model });
+    RQ.showView(editorView, { template: template });
   },
 
   showRuleEditor: function(ruleType, date) {
@@ -49,13 +46,13 @@ RQ.Router = Backbone.Router.extend({
     BG.StorageService.getRecord(objectKey, function(modelJSON) {
       var ruleTypeUpperCase = ruleType.toUpperCase(),
         template = that.getRuleEditorTemplate(ruleTypeUpperCase),
-        editorView = that.getRuleView(ruleTypeUpperCase),
+        editorView = new that.ruleViewMap[ruleTypeUpperCase](),
         model;
 
       modelJSON = modelJSON[objectKey];
       model = new that.ruleModelMap[ruleTypeUpperCase](modelJSON);
 
-      editorView.render({template: template, el: '.content', model: model });
+      RQ.showView(editorView, {template: template, model: model });
     });
   }
 });

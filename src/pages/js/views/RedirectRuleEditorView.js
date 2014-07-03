@@ -1,7 +1,5 @@
 var RedirectRuleEditorView = Backbone.View.extend({
 
-  el: '.content',
-
   Model: RedirectRuleModel,
 
   events: {
@@ -20,16 +18,12 @@ var RedirectRuleEditorView = Backbone.View.extend({
   },
 
   render: function(options) {
-    if (options.el) {
-      this.$el = $(options.el);
-    }
-
     if (options.model && options.model instanceof Backbone.Model) {
       this.model = options.model;
     }
 
     var markup = _.template(options.template, { rule: this.model });
-    this.$el.html(markup);
+    $(this.el).html(markup);
   },
 
   updateRuleName: function(event) {

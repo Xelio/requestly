@@ -16,13 +16,23 @@ RQ.init = function(options) {
 
   };
 
-  this.Views = {
-    redirectRuleEditView: new RedirectRuleEditorView(),
-    cancelRuleEditView: new CancelRuleEditorView(),
-    ruleIndexView: new RuleIndexView()
-  };
+  this.showView = function(view, options) {
+    if (this.currentView) {
+      this.currentView.close();
+    }
+
+    this.currentView = view;
+    this.currentView.render(options);
+
+    $('#content').html(this.currentView.el);
+  }
 
   this.router = new RQ.Router();
 
   Backbone.history.start();
+};
+
+Backbone.View.prototype.close = function() {
+  this.remove();
+  this.unbind();
 };

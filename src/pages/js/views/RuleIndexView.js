@@ -1,7 +1,5 @@
 var RuleIndexView = Backbone.View.extend({
 
-  el: '.content',
-
   events: {
     'click .ruleName': 'showRuleEditor',
     'click .toggle-status-icon': 'toggleStatus',
@@ -14,10 +12,6 @@ var RuleIndexView = Backbone.View.extend({
 
   render: function(options) {
     var that = this;
-
-    if (options.el) {
-      this.$el = $(options.el);
-    }
 
     this.rulesCollection.fetchRules({
       success: function(rules) {
