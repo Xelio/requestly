@@ -50,11 +50,23 @@ table tr:hover td {
   margin-left: 5px;
 }
 
-/* Redirect Rule Row specific properties */
-.toggle-status-icon.redirect.active {
+/* RuleType Row specific properties */
+.redirect.rule-item-row {
+  border-left: 10px solid #5B9027;
+}
+
+.cancel.rule-item-row {
+  border-left: 10px solid #d32a0e;
+}
+
+.redirect .toggle-status-icon.redirect.active {
   color: #5B9027;
 }
 
-.toggle-status-icon.redirect.inactive {
+.cancel .toggle-status-icon.cancel.active {
+  color: #d32a0e;
+}
+
+.toggle-status-icon.inactive {
   color: #ccc;
 }

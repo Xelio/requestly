@@ -30,7 +30,7 @@
           date = date.toUTCString().split(' ');
           date = date[1] + ' ' + date[2] + ', ' + date[3];
           %>
-          <tr class="rule-item-row" data-type="<%=rule.getRuleType()%>" data-creationDate="<%=rule.getCreationDate()%>">
+          <tr class="rule-item-row <%=ruleType.toLowerCase()%>" data-type="<%=ruleType%>" data-creationDate="<%=rule.getCreationDate()%>">
             <td>
               <a class="ruleName"><%= RQ.htmlEncode(rule.getName()) %></a>
               <div class="ruleDescription"><%= RQ.htmlEncode(rule.getDescription()) %></div>
