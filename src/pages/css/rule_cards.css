@@ -1,0 +1,42 @@
+.panel {
+  width: 360px;
+  display: inline-block;
+  margin: 10px;
+}
+
+.panel > .panel-heading {
+  color: #fff;
+  padding: 10px;
+}
+
+.panel-redirect-rule {
+  border-color: #5B9027;
+}
+
+.panel-redirect-rule > .panel-heading {
+  background-color: #5B9027;
+  border-color: #5B9027;
+}
+
+.panel-cancel-rule {
+  border-color: #b1240c;
+}
+.panel-cancel-rule > .panel-heading {
+  background-color: #d32a0e;
+  border-color: #b1240c;
+}
+
+.select-icon {
+  float: right;
+  background: #aaa;
+  color: #ccc;
+  font-size: 10px;
+  padding: 6px;
+  border-radius: 2px;
+  margin-top: -3px;
+}
+
+.panel.selected .select-icon {
+  background: #3071a9;
+  color: white;
+}

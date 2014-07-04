@@ -1,6 +1,7 @@
 RQ.Router = Backbone.Router.extend({
   routes: {
     '': 'showRulesList',
+    'selectRule': 'showRuleCardsView',
     'new/:type': 'showRuleCreator',
     'edit/:type/:date': 'showRuleEditor'
   },
@@ -28,6 +29,11 @@ RQ.Router = Backbone.Router.extend({
   showRulesList: function() {
     var ruleIndexView = new RuleIndexView();
     RQ.showView(ruleIndexView, { template: RQ.Templates.RULE_INDEX_TEMPLATE });
+  },
+
+  showRuleCardsView: function() {
+    var ruleCardsView = new RuleCardsView();
+    RQ.showView(ruleCardsView, { template: RQ.Templates.RULE_CARDS_TEMPLATE });
   },
 
   showRuleCreator: function(ruleType) {

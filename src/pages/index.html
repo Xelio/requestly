@@ -6,6 +6,7 @@
     <link href="/src/pages/css/index.css" rel="stylesheet">
     <link href="/src/pages/css/redirect_rule.css" rel="stylesheet">
     <link href="/src/pages/css/cancel_rule.css" rel="stylesheet">
+    <link href="/src/pages/css/rule_cards.css" rel="stylesheet">
   </head>
   <body>
     <!-- All templates go here -->
@@ -13,7 +14,7 @@
       <nav class="rule-header rq-dimgrey">
         <span>Rules</span>
         <span>(<%= rules.length %>)</span>
-        <a href="#new/Redirect" role="button" class="btn-success btn right create-rule-button">New Rule</a>
+        <a href="#selectRule" role="button" class="btn-success btn right select-rule-button">Select Rule</a>
       </nav>
       <section class="rule-index">
         <table class="table table-striped">
@@ -181,6 +182,38 @@
       </section>
     </script>
 
+    <script type="text/template" id="rule-cards-template">
+      <nav class="rule-header rq-dimgrey">
+        <span>Select Rule</span>
+        <a href="#selectRule" role="button" disabled class="btn-success btn create-rule-button">Create Rule</a>
+      </nav>
+      <section class="rule-body">
+        <div class="panel panel-redirect-rule" data-target="#new/Redirect">
+          <div class="panel-heading">
+            <h3 class="panel-title">
+              <span>Redirect Request</span>
+              <span class="glyphicon glyphicon-ok select-icon"></span>
+            </h3>
+          </div>
+          <div class="panel-body">
+            Redirect a request URL
+          </div>
+        </div>
+
+        <div class="panel panel-cancel-rule" data-target="#new/Cancel">
+          <div class="panel-heading">
+            <h3 class="panel-title">
+              <span>Cancel Request</span>
+              <span class="glyphicon glyphicon-ok select-icon"></span>
+            </h3>
+          </div>
+          <div class="panel-body">
+            Cancel a request
+          </div>
+        </div>
+      </section>
+    </script>
+
     <!-- End of templates sections -->
 
     <div class="header">
@@ -212,6 +245,7 @@
     <script type="text/javascript" src="/src/pages/js/views/RedirectRuleEditorView.js"></script>
     <script type="text/javascript" src="/src/pages/js/views/CancelRuleEditorView.js"></script>
     <script type="text/javascript" src="/src/pages/js/views/RuleIndexView.js"></script>
+    <script type="text/javascript" src="/src/pages/js/views/RuleCardsView.js"></script>
 
     <script type="text/javascript" src="/src/pages/js/app.js"></script>
     <script type="text/javascript" src="/src/pages/js/router.js"></script>
