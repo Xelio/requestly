@@ -6,7 +6,7 @@ BG.Methods.setupRules = function() {
   BG.Methods.registerListeners();
 };
 
-BG.Methods.matchesRedirectRule = function(rule, url) {
+BG.Methods.matchUrlWithRule = function(rule, url) {
   var source = rule.source,
     operator = source.operator,
     value;
@@ -39,10 +39,22 @@ BG.Methods.registerListeners = function() {
         // Setup Redirect Rule
         switch(rule.ruleType) {
           case RQ.RULE_TYPES.REDIRECT:
-            if (BG.Methods.matchesRedirectRule(rule, details.url)) {
+            if (BG.Methods.matchUrlWithRule(rule, details.url)) {
               return { redirectUrl: rule.destination };
             }
             break;
+
+        /**
+         * In case of Cancel Request, destination url is 'javascript:'
+         */
+          case RQ.RULE_TYPES.CANCEL:
+            if (BG.Methods.matchUrlWithRule(rule, details.url)) {
+              return { redirectUrl: 'javascript:' };
+            }
+            break;
+
+          default:
+            console.log('Unknown rule type in rule:', rule);
         }
       }
     },
