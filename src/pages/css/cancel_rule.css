@@ -1,0 +1,10 @@
+.cancel-rule-editor .rule-header {
+  background: #d32a0e;
+  border-color: #b1240c;
+}
+
+.cancel-rule-editor .save-button {
+  background: #d32a0e;
+  border-color: #b1240c;
+  color: white;
+}

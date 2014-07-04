@@ -5,6 +5,7 @@
     <link href="/src/pages/css/styles.css" rel="stylesheet">
     <link href="/src/pages/css/index.css" rel="stylesheet">
     <link href="/src/pages/css/redirect_rule.css" rel="stylesheet">
+    <link href="/src/pages/css/cancel_rule.css" rel="stylesheet">
   </head>
   <body>
     <!-- All templates go here -->
@@ -119,7 +120,65 @@
     </script>
 
     <script type="text/template" id="cancel-rule-editor-template">
-      Cancel editor will be shown here
+      <nav class="rule-header">
+        <span>Cancel Request Rule</span>
+      </nav>
+      <section class="rule-body">
+        <div class="input-group name-container">
+          <span class="input-group-addon">Rule Name</span>
+          <input type="text" class="form-control rule-name-input" placeholder="" value="<%=rule.getName()%>">
+        </div>
+
+        <% var status = rule.getStatus() %>
+        <div class="rule-status-container">
+          <span class="title">Status</span>
+          <span class="dropdown-container">
+            <select class="rule-status-select">
+              <option value="<%= RQ.RULE_STATUS.ACTIVE %>" "<% if(status === RQ.RULE_STATUS.ACTIVE) { %> selected <% } %>">
+              Active
+              </option>
+              <option value="<%= RQ.RULE_STATUS.INACTIVE %>" <% if(status === RQ.RULE_STATUS.INACTIVE) { %> selected <% } %> >
+              Inactive
+              </option>
+            </select>
+          </span>
+        </div>
+
+        <div class="description-container">
+          <div class="title">Rule Description (Optional)</div>
+          <textarea class="rule-description"
+                    placeholder="e.g. Cancel request for evilsite.com"><%=rule.getDescription()%></textarea>
+        </div>
+
+        <div class="source-container">
+          <% var source = rule.getSource(); %>
+          <div class="title">Source</div>
+          <div class="well well-sm">
+            <div class="dropdown-container">
+              <select class="rule-operator-select">
+                <option value="<%= RQ.RULE_OPERATORS.EQUALS %>" "<% if(source.operator === RQ.RULE_OPERATORS.EQUALS) { %> selected <% } %>">
+                Equals
+                </option>
+                <option value="<%= RQ.RULE_OPERATORS.CONTAINS %>" <% if(source.operator === RQ.RULE_OPERATORS.CONTAINS) { %> selected <% } %> >
+                Contains
+                </option>
+              </select>
+            </div>
+
+            <% _.each(source.values, function(value, index) { %>
+            <div class="source-value-container">
+              <input type="url" class="form-control source-url-input"
+                     placeholder="e.g. http://www.yahoo.com/" value="<%=value%>" data-index="<%=index%>"/>
+            </div>
+            <% }); %>
+          </div>
+        </div>
+
+        <div class="buttons-container">
+          <a id="save-cancel-rule" class="btn save-button">Save</a>
+          <a href="#" class="btn btn-default">Cancel</a>
+        </div>
+      </section>
     </script>
 
     <!-- End of templates sections -->

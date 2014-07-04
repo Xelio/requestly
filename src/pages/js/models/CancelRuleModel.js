@@ -6,11 +6,7 @@ var CancelRuleModel = BaseRuleModel.extend({
         operator: RQ.RULE_OPERATORS.EQUALS,
         values: ['']
       },
-      ruleType: RQ.RULE_TYPES.CANCEL,
-      response: {
-        statusCode: RQ.RESPONSE_CODES.NOT_FOUND,
-        message: ''
-      }
+      ruleType: RQ.RULE_TYPES.CANCEL
     });
   },
 
