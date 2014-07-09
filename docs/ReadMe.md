@@ -10,3 +10,8 @@
 4. How to render multiple views in same el and get rid of zmobie views
   > http://lostechies.com/derickbailey/2011/09/15/zombies-run-managing-page-transitions-in-backbone-apps/
 
+5. How to modify response headers by chrome extension ?
+  > http://stackoverflow.com/questions/12644924/cant-edit-response-headers-by-chrome-extension
+
+6. Switching User Agent chrome extension 
+  > https://chrome.google.com/webstore/detail/user-agent-switcher/lkmofgnohbedopheiphabfhfjgkhfcgf
