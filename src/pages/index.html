@@ -23,12 +23,12 @@
           </thead>
           <tbody>
           <% _.each(rules, function(rule, index) {
-          var date = new Date(Number(rule.getCreationDate())),
-          ruleType = rule.getRuleType(),
-          ruleStatus = rule.getStatus();
+            var date = new Date(Number(rule.getCreationDate())),
+              ruleType = rule.getRuleType(),
+              ruleStatus = rule.getStatus();
 
-          date = date.toUTCString().split(' ');
-          date = date[1] + ' ' + date[2] + ', ' + date[3];
+            date = date.toUTCString().split(' ');
+            date = date[1] + ' ' + date[2] + ', ' + date[3];
           %>
           <tr class="rule-item-row <%=ruleType.toLowerCase()%>" data-type="<%=ruleType%>" data-creationDate="<%=rule.getCreationDate()%>">
             <td>
@@ -209,6 +209,18 @@
           </div>
           <div class="panel-body">
             Cancel a request
+          </div>
+        </div>
+
+        <div class="panel panel-replace-rule" data-target="#new/Replace">
+          <div class="panel-heading">
+            <h3 class="panel-title">
+              <span>Replace Host</span>
+              <span class="glyphicon glyphicon-ok select-icon"></span>
+            </h3>
+          </div>
+          <div class="panel-body">
+            Replace host name in a URL
           </div>
         </div>
       </section>

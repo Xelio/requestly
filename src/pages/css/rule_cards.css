@@ -26,6 +26,15 @@
   border-color: #b1240c;
 }
 
+.panel-replace-rule {
+  border-color: #2A95E7;
+}
+
+.panel-replace-rule > .panel-heading {
+  background-color: #2A95E7;
+  border-color: #2A95E7;
+}
+
 .select-icon {
   float: right;
   background: #aaa;
