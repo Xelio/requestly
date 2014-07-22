@@ -35,6 +35,7 @@
   font-style: italic;
   width: 350px;
   max-width: 350px;
+  word-wrap: break-word;
 }
 
 .status-cell {
