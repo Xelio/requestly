@@ -17,13 +17,9 @@ RQ.Router = Backbone.Router.extend({
     CANCEL: CancelRuleEditorView
   },
 
-  getRuleEditorTemplate: function(ruleType) {
-    var ruleTemplateMap = {
-      REDIRECT: RQ.Templates.REDIRECT_RULE_EDITOR_TEMPLATE,
-      CANCEL: RQ.Templates.CANCEL_RULE_EDITOR_TEMPLATE
-    };
-
-    return ruleTemplateMap[ruleType];
+  ruleTemplateMap: {
+    REDIRECT: RQ.Templates.REDIRECT_RULE_EDITOR_TEMPLATE,
+    CANCEL: RQ.Templates.CANCEL_RULE_EDITOR_TEMPLATE
   },
 
   showRulesList: function() {
@@ -38,7 +34,7 @@ RQ.Router = Backbone.Router.extend({
 
   showRuleCreator: function(ruleType) {
     var ruleTypeUpperCase = ruleType.toUpperCase(),
-      template = this.getRuleEditorTemplate(ruleTypeUpperCase),
+      template = this.ruleTemplateMap[ruleTypeUpperCase],
       editorView = new this.ruleViewMap[ruleTypeUpperCase](),
       model = new this.ruleModelMap[ruleTypeUpperCase]();
 
@@ -51,7 +47,7 @@ RQ.Router = Backbone.Router.extend({
 
     BG.StorageService.getRecord(objectKey, function(modelJSON) {
       var ruleTypeUpperCase = ruleType.toUpperCase(),
-        template = that.getRuleEditorTemplate(ruleTypeUpperCase),
+        template = that.ruleTemplateMap[ruleTypeUpperCase],
         editorView = new that.ruleViewMap[ruleTypeUpperCase](),
         model;
 
