@@ -7,19 +7,21 @@ RQ.Router = Backbone.Router.extend({
   },
 
   ruleModelMap: {
-    BASE: BaseRuleModel,
     REDIRECT: RedirectRuleModel,
-    CANCEL: CancelRuleModel
+    CANCEL: CancelRuleModel,
+    REPLACE: ReplaceRuleModel
   },
 
   ruleViewMap: {
     REDIRECT: RedirectRuleEditorView,
-    CANCEL: CancelRuleEditorView
+    CANCEL: CancelRuleEditorView,
+    REPLACE: ReplaceRuleEditorView
   },
 
   ruleTemplateMap: {
     REDIRECT: RQ.Templates.REDIRECT_RULE_EDITOR_TEMPLATE,
-    CANCEL: RQ.Templates.CANCEL_RULE_EDITOR_TEMPLATE
+    CANCEL: RQ.Templates.CANCEL_RULE_EDITOR_TEMPLATE,
+    REPLACE: RQ.Templates.REPLACE_RULE_EDITOR_TEMPLATE
   },
 
   showRulesList: function() {

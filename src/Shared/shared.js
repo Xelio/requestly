@@ -2,7 +2,8 @@ var RQ = RQ || {};
 
 RQ.RULE_TYPES = {
   REDIRECT: 'Redirect',
-  CANCEL: 'Cancel'
+  CANCEL: 'Cancel',
+  REPLACE: 'Replace'
 };
 
 RQ.RULE_STATUS = {

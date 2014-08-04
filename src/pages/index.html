@@ -52,6 +52,7 @@
       </section>
     </script>
 
+    <!-- Redirect Rule Editor Template -->
     <script type="text/template" id="redirect-rule-editor-template">
       <nav class="rule-header rq-green">
         <span>Redirect Request Rule</span>
@@ -119,6 +120,7 @@
         </div>
       </section>
     </script>
+    <!-- End of Redirect Rule Editor Template -->
 
     <script type="text/template" id="cancel-rule-editor-template">
       <nav class="rule-header">
@@ -182,10 +184,10 @@
       </section>
     </script>
 
-    <!--------------------------------Replace Rule Editor Template --------------------------------------------->
+    <!-------------------------------- Replace Rule Editor Template ------------------------------------->
     <script type="text/template" id="replace-rule-editor-template">
       <nav class="rule-header">
-        <span>Replace Sub-URL Rule</span>
+        <span>Replace Host or some part of URL</span>
       </nav>
       <section class="rule-body">
         <div class="input-group name-container">
@@ -214,32 +216,14 @@
                     placeholder="e.g. Cancel request for evilsite.com"><%=rule.getDescription()%></textarea>
         </div>
 
-        <div class="source-container">
-          <% var source = rule.getSource(); %>
-          <div class="title">Source</div>
+        <div class="pairs-container">
+          <div class="title">Pairs</div>
           <div class="well well-sm">
-            <div class="dropdown-container">
-              <select class="rule-operator-select">
-                <option value="<%= RQ.RULE_OPERATORS.EQUALS %>" "<% if(source.operator === RQ.RULE_OPERATORS.EQUALS) { %> selected <% } %>">
-                Equals
-                </option>
-                <option value="<%= RQ.RULE_OPERATORS.CONTAINS %>" <% if(source.operator === RQ.RULE_OPERATORS.CONTAINS) { %> selected <% } %> >
-                Contains
-                </option>
-              </select>
-            </div>
-
-            <% _.each(source.values, function(value, index) { %>
-            <div class="source-value-container">
-              <input type="url" class="form-control source-url-input"
-                     placeholder="e.g. http://www.yahoo.com/" value="<%=value%>" data-index="<%=index%>"/>
-            </div>
-            <% }); %>
           </div>
         </div>
 
         <div class="buttons-container">
-          <a id="save-cancel-rule" class="btn save-button">Save</a>
+          <a id="save-replace-rule" class="btn save-button">Save</a>
           <a href="#" class="btn btn-default">Cancel</a>
         </div>
       </section>
@@ -313,6 +297,7 @@
     <script type="text/javascript" src="/src/pages/js/models/BaseRuleModel.js"></script>
     <script type="text/javascript" src="/src/pages/js/models/RedirectRuleModel.js"></script>
     <script type="text/javascript" src="/src/pages/js/models/CancelRuleModel.js"></script>
+    <script type="text/javascript" src="/src/pages/js/models/ReplaceRuleModel.js"></script>
 
     <!-- Backbone Collections -->
     <script type="text/javascript" src="/src/pages/js/collections/RulesCollection.js"></script>
@@ -320,6 +305,7 @@
     <!-- Backbone Views -->
     <script type="text/javascript" src="/src/pages/js/views/RedirectRuleEditorView.js"></script>
     <script type="text/javascript" src="/src/pages/js/views/CancelRuleEditorView.js"></script>
+    <script type="text/javascript" src="/src/pages/js/views/ReplaceRuleEditorView.js"></script>
     <script type="text/javascript" src="/src/pages/js/views/RuleIndexView.js"></script>
     <script type="text/javascript" src="/src/pages/js/views/RuleCardsView.js"></script>
 
