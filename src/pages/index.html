@@ -4,8 +4,10 @@
     <link href="/src/libs/css/bootstrap.css" rel="stylesheet">
     <link href="/src/pages/css/styles.css" rel="stylesheet">
     <link href="/src/pages/css/index.css" rel="stylesheet">
+    <link href="/src/pages/css/editor.css" rel="stylesheet">
     <link href="/src/pages/css/redirect_rule.css" rel="stylesheet">
     <link href="/src/pages/css/cancel_rule.css" rel="stylesheet">
+    <link href="/src/pages/css/replace_rule.css" rel="stylesheet">
     <link href="/src/pages/css/rule_cards.css" rel="stylesheet">
   </head>
   <body>
@@ -213,12 +215,34 @@
         <div class="description-container">
           <div class="title">Rule Description (Optional)</div>
           <textarea class="rule-description"
-                    placeholder="e.g. Cancel request for evilsite.com"><%=rule.getDescription()%></textarea>
+                    placeholder="e.g. Replace http://evilsite.com with http://goodsite.com in all URLs"><%=rule.getDescription()%></textarea>
         </div>
 
         <div class="pairs-container">
-          <div class="title">Pairs</div>
+          <div class="title">
+            <span class="left">Pairs</span>
+            <button class="right btn add-pair">
+              <span class="glyphicon glyphicon-plus-sign action-icon"></span>
+              <span>New</span>
+            </button>
+            </div>
           <div class="well well-sm">
+            <% var pairs = rule.getPairs();
+            _.each(pairs, function(pair, index) {
+              var from = pair.from,
+                to = pair.to; %>
+              <div class="pair-container" data-index="<%=index%>">
+                <div class="input-group">
+                  <span class="input-group-addon">Replace</span>
+                  <input type="text" class="form-control from-input" placeholder="" value="<%=from%>">
+                </div>
+                <div class="input-group">
+                  <span class="input-group-addon">With</span>
+                  <input type="text" class="form-control to-input" placeholder="" value="<%=to%>">
+                </div>
+                <span class="glyphicon glyphicon-trash delete-pair-icon action-icon"></span>
+              </div>
+            <% }); %>
           </div>
         </div>
 

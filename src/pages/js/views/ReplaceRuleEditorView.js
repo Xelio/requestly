@@ -2,6 +2,8 @@ var ReplaceRuleEditorView = Backbone.View.extend({
 
   Model: ReplaceRuleModel,
 
+  className: 'replace-rule-editor',
+
   events: {
     'keyup .rule-name-input': 'updateRuleName',
     'change .rule-status-select': 'updateRuleStatus',

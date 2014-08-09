@@ -1,0 +1,39 @@
+.replace-rule-editor .rule-header {
+  background-color: #2A95E7;
+  border-color: #2A95E7;
+}
+
+.replace-rule-editor .save-button {
+  background-color: #2A95E7;
+  border-color: #2A95E7;
+  color: white;
+}
+
+.pair-container:first-child:last-child .input-group {
+  width: 370px;
+}
+
+.pair-container:first-child:last-child .delete-pair-icon {
+  display: none;
+}
+
+.pair-container .input-group {
+  width: 350px;
+  display: inline-table;
+  padding: 10px;
+}
+
+.delete-pair-icon {
+  position: relative;
+  top: -10px;
+}
+
+.add-pair {
+  padding: 3px 5px 3px 1px;
+  border-radius: 2px;
+  margin-top: -5px;
+}
+
+.add-pair .action-icon {
+  vertical-align: text-top;
+}

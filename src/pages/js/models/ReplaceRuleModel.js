@@ -1,12 +1,23 @@
 var ReplaceRuleModel = BaseRuleModel.extend({
   defaults: function() {
     return _.extend(BaseRuleModel.prototype.defaults(), {
-      pairs: [{
-        from: '',
-        to: '',
-        status: RQ.RULE_STATUS.INACTIVE
-      }],
-      ruleType: RQ.RULE_TYPES.REPLACE
+      ruleType: RQ.RULE_TYPES.REPLACE,
+      pairs: [
+        {
+          from: '',
+          to: '',
+          status: RQ.RULE_STATUS.INACTIVE
+        }
+      ]
     });
+  },
+
+  getPairs: function() {
+    return this.get('pairs');
+  },
+
+  setPair: function(index, pair) {
+    var pairs = this.getPairs();
+    pairs[index] = pair;
   }
 });

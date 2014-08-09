@@ -32,6 +32,10 @@ select {
   color: #eee;
 }
 
+.right {
+  float: right;
+}
+
 .icon-requestly {
   height: 30px;
   position: relative;

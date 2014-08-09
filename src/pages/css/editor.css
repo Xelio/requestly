@@ -1,0 +1,45 @@
+.name-container {
+  width: 580px;
+  float: left;
+}
+
+.rule-status-container {
+  display: inline-block;
+  height: 54px;
+  line-height: 54px;
+  padding: 0 10px;
+  text-align: right;
+  float: right;
+}
+
+.dropdown-container {
+  padding-bottom: 10px;
+}
+
+.input-group {
+  padding: 10px 0;
+}
+
+.description-container {
+  padding-bottom: 10px;
+}
+
+.title {
+  padding: 5px 0;
+  color: #555;
+}
+
+.rule-description {
+  resize: none;
+  height: 100px;
+  width: 100%;
+  margin: 0;
+  border-radius: 2px;
+  padding: 5px;
+}
+
+.buttons-container .btn {
+  float: right;
+  border-radius: 2px;
+  margin: 5px;
+}
