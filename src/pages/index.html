@@ -234,13 +234,15 @@
               <div class="pair-container" data-index="<%=index%>">
                 <div class="input-group">
                   <span class="input-group-addon">Replace</span>
-                  <input type="text" class="form-control from-input" placeholder="" value="<%=from%>">
+                  <input type="text" class="form-control from-input" data-key="from"
+                         placeholder="This part in URL" value="<%=from%>">
                 </div>
                 <div class="input-group">
                   <span class="input-group-addon">With</span>
-                  <input type="text" class="form-control to-input" placeholder="" value="<%=to%>">
+                  <input type="text" class="form-control to-input" data-key="to"
+                         placeholder="Will be replaced by this string" value="<%=to%>">
                 </div>
-                <span class="glyphicon glyphicon-trash delete-pair-icon action-icon"></span>
+                <span class="glyphicon glyphicon-trash delete-pair action-icon"></span>
               </div>
             <% }); %>
           </div>

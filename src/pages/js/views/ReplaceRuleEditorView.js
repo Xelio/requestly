@@ -8,6 +8,9 @@ var ReplaceRuleEditorView = Backbone.View.extend({
     'keyup .rule-name-input': 'updateRuleName',
     'change .rule-status-select': 'updateRuleStatus',
     'keyup .rule-description': 'updateRuleDescription',
+    'click .add-pair': 'addPair',
+    'click .delete-pair': 'deletePair',
+    'keyup .pair-container input': 'updateRulePair',
     'click .save-button': 'saveRule'
   },
 
@@ -17,6 +20,9 @@ var ReplaceRuleEditorView = Backbone.View.extend({
   },
 
   render: function(options) {
+    options = options || {};
+    options.template = options.template || RQ.Templates.REPLACE_RULE_EDITOR_TEMPLATE;
+
     if (options.model && options.model instanceof Backbone.Model) {
       this.model = options.model;
     }
@@ -35,6 +41,32 @@ var ReplaceRuleEditorView = Backbone.View.extend({
 
   updateRuleDescription: function(event) {
     this.model.setDescription(event.target.value);
+  },
+
+  addPair: function(event) {
+    var newPair = this.model.getDefaultPair(),
+      pairs = this.model.getPairs();
+
+    pairs.push(newPair);
+    this.render();
+  },
+
+  deletePair: function(event) {
+    var $target = $(event.target),
+      pairIndex = Number($target.parents('.pair-container').attr('data-index')),
+      pairs = this.model.getPairs();
+
+    pairs.splice(pairIndex, 1);
+    this.render();
+  },
+
+  updateRulePair: function(event) {
+    var $target = $(event.target),
+      index = Number($target.parents('.pair-container').attr('data-index')),
+      key = $target.attr('data-key'),
+      pairs = this.model.getPairs();
+
+    pairs[index][key] = event.target.value;
   },
 
   saveRule: function() {

@@ -3,13 +3,13 @@ var ReplaceRuleModel = BaseRuleModel.extend({
     return _.extend(BaseRuleModel.prototype.defaults(), {
       ruleType: RQ.RULE_TYPES.REPLACE,
       pairs: [
-        {
-          from: '',
-          to: '',
-          status: RQ.RULE_STATUS.INACTIVE
-        }
+        this.getDefaultPair()
       ]
     });
+  },
+
+  getDefaultPair: function() {
+    return { from: '', to: '', status: RQ.RULE_STATUS.INACTIVE };
   },
 
   getPairs: function() {
