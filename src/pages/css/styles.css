@@ -36,6 +36,14 @@ select {
   float: right;
 }
 
+.dropdown-container {
+  padding-bottom: 10px;
+}
+
+.input-group {
+  padding: 10px 0;
+}
+
 .icon-requestly {
   height: 30px;
   position: relative;
