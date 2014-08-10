@@ -26,6 +26,20 @@ BG.Methods.matchUrlWithRule = function(rule, url) {
   return false;
 };
 
+BG.Methods.matchUrlWithReplaceRulePairs = function(rule, url) {
+  var pairs = rule.pairs,
+    resultingUrl = null;
+
+  for (var i = 0, pair = pairs[i]; i < pairs.length; i++) {
+    if (url.indexOf(pair.from) > -1) {
+      resultingUrl = url.replace(pair.from, pair.to);
+      break;
+    }
+  }
+
+  return resultingUrl;
+};
+
 BG.Methods.registerListeners = function() {
   chrome.webRequest.onBeforeRequest.addListener(
     function(details) {
@@ -36,7 +50,6 @@ BG.Methods.registerListeners = function() {
           continue;
         }
 
-        // Setup Redirect Rule
         switch(rule.ruleType) {
           case RQ.RULE_TYPES.REDIRECT:
             if (BG.Methods.matchUrlWithRule(rule, details.url)) {
@@ -44,12 +57,19 @@ BG.Methods.registerListeners = function() {
             }
             break;
 
-        /**
-         * In case of Cancel Request, destination url is 'javascript:'
-         */
+          /**
+            * In case of Cancel Request, destination url is 'javascript:'
+            */
           case RQ.RULE_TYPES.CANCEL:
             if (BG.Methods.matchUrlWithRule(rule, details.url)) {
               return { redirectUrl: 'javascript:' };
+            }
+            break;
+
+          case RQ.RULE_TYPES.REPLACE:
+            var resultingUrl = BG.Methods.matchUrlWithReplaceRulePairs(rule, details.url);
+            if (resultingUrl !== null) {
+              return { redirectUrl: resultingUrl };
             }
             break;
 
