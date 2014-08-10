@@ -60,12 +60,20 @@ table tr:hover td {
   border-left: 10px solid #d32a0e;
 }
 
+.replace.rule-item-row {
+  border-left: 10px solid #2A95E7;
+}
+
 .redirect .toggle-status-icon.redirect.active {
   color: #5B9027;
 }
 
 .cancel .toggle-status-icon.cancel.active {
   color: #d32a0e;
+}
+
+.replace .toggle-status-icon.replace.active {
+  color: #2A95E7;
 }
 
 .toggle-status-icon.inactive {
