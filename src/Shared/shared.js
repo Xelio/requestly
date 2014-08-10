@@ -1,5 +1,7 @@
 var RQ = RQ || {};
 
+RQ.VERSION = 2.1;
+
 RQ.RULE_TYPES = {
   REDIRECT: 'Redirect',
   CANCEL: 'Cancel',

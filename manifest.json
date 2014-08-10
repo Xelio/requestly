@@ -1,9 +1,9 @@
 {
   "name": "Requestly",
 
-  "version": "2.0",
+  "version": "2.1",
   "manifest_version": 2,
-  "description": "Chrome Extension to redirect HTTP requests",
+  "description": "Chrome Extension to modify HTTP requests",
 
   "background": {
     "scripts": [
@@ -17,7 +17,7 @@
   
   "browser_action": {
     "default_icon": "resources/images/256x256.png",
-    "default_title": "Modify your HTTP/HTTPS requests as you wish"
+    "default_title": "Modify your HTTP/HTTPS requests"
   },
 
   "icons": {

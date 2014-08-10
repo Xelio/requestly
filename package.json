@@ -1,7 +1,7 @@
 {
   "name": "Requestly",
-  "version": "2.0",
-  "description": "A Chrome extension to play with your network requests",
+  "version": "2.1",
+  "description": "A Chrome extension to modify network requests",
   "main": "app.js",
   "directories": {
     "doc": "docs"
