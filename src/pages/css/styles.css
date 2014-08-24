@@ -66,6 +66,33 @@ select {
   letter-spacing: -2px;
 }
 
+#rq-notifier {
+  border-radius: 2px;
+  color: whitesmoke;
+  font-weight: bold;
+  position: fixed;
+  padding: 8px;
+  z-index: 100;
+  text-align: center;
+  width: 100%;
+}
+
+.rq-success {
+  background-color: #3c763d;
+}
+
+.rq-error {
+  background-color: #a94442;
+}
+
+.rq-info {
+  background-color: #31708f;
+}
+
+.rq-notice {
+  background-color: #DF731F;
+}
+
 .content {
   width: 800px;
   margin: auto;
