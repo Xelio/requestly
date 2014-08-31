@@ -16,7 +16,13 @@
       <nav class="rule-header rq-dimgrey">
         <span>Rules</span>
         <span>(<%= rules.length %>)</span>
-        <a href="#selectRule" role="button" class="btn-success btn right select-rule-button">New Rule</a>
+        <div class="right">
+          <a href="#selectRule" role="button" class="btn-success btn select-rule-button">New Rule</a>
+          <% if (rules.length > 0) { %>
+            <button class="btn-info btn-export btn export-rules-button">Export Rules</button>
+          <% } %>
+          <button class="btn-info btn-import btn import-rules-button">Import Rules</button>
+        </div>
       </nav>
       <section class="rule-index">
         <table class="table table-striped">
@@ -25,14 +31,15 @@
           </thead>
           <tbody>
           <% _.each(rules, function(rule, index) {
-            var date = new Date(Number(rule.getCreationDate())),
+            var id = rule.getId(),
+              date = new Date(Number(rule.getCreationDate())),
               ruleType = rule.getRuleType(),
               ruleStatus = rule.getStatus();
 
             date = date.toUTCString().split(' ');
             date = date[1] + ' ' + date[2] + ', ' + date[3];
           %>
-          <tr class="rule-item-row <%=ruleType.toLowerCase()%>" data-type="<%=ruleType%>" data-creationDate="<%=rule.getCreationDate()%>">
+          <tr class="rule-item-row <%=ruleType.toLowerCase()%>" data-id="<%=id%>">
             <td>
               <a class="ruleName"><%= RQ.htmlEncode(rule.getName()) %></a>
               <div class="ruleDescription"><%= RQ.htmlEncode(rule.getDescription()) %></div>
@@ -259,7 +266,7 @@
     <script type="text/template" id="rule-cards-template">
       <nav class="rule-header rq-dimgrey">
         <span>Select Rule</span>
-        <a href="#selectRule" role="button" disabled class="btn-success btn create-rule-button">Create Rule</a>
+        <a href="#selectRule" role="button" disabled class="btn-success btn right create-rule-button">Create Rule</a>
       </nav>
       <section class="rule-body">
         <div class="panel panel-redirect-rule" data-target="#new/Redirect">
@@ -320,7 +327,8 @@
     <script type="text/javascript" src="/src/Shared/shared.js"></script>
 
     <!-- Utils and Components -->
-    <script type="text/javascript" src="/src/pages/js/components/notifiation.js"></script>
+    <script type="text/javascript" src="/src/pages/js/components/notification.js"></script>
+    <script type="text/javascript" src="/src/pages/js/components/FileHandler.js"></script>
 
     <!-- Backbone Models -->
     <script type="text/javascript" src="/src/pages/js/models/BaseRuleModel.js"></script>

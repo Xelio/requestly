@@ -1,14 +1,19 @@
 var RuleCardsView = Backbone.View.extend({
+
+  Template: function() {
+    return RQ.Templates.RULE_CARDS_TEMPLATE;
+  },
+
   events: {
     'click .select-icon': 'selectRule'
   },
 
   render: function(options) {
-    if (options.model && options.model instanceof Backbone.Model) {
+    if (options && options.model && options.model instanceof Backbone.Model) {
       this.model = options.model;
     }
 
-    var markup = _.template(options.template, { rule: this.model });
+    var markup = _.template(this.Template(), { rule: this.model });
     $(this.el).html(markup);
   },
 

@@ -1,10 +1,11 @@
 .select-rule-button,
-.create-rule-button {
-  float: right;
+.create-rule-button,
+.export-rules-button,
+.import-rules-button {
   position: relative;
   top: -3px;
   padding: 3px 10px;
-  right: 5px;
+  margin-left: 5px;
 }
 
 .rule-index > table {

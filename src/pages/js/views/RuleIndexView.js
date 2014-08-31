@@ -1,74 +1,89 @@
 var RuleIndexView = Backbone.View.extend({
 
+  Template: function() {
+    return RQ.Templates.RULE_INDEX_TEMPLATE;
+  },
+
   events: {
     'click .ruleName': 'showRuleEditor',
     'click .toggle-status-icon': 'toggleStatus',
-    'click .delete-rule-icon': 'deleteRule'
+    'click .delete-rule-icon': 'deleteRule',
+    'click .btn-export': 'exportAllRules',
+    'click .btn-import': 'importAllRules'
   },
 
   initialize: function() {
     this.rulesCollection = new RulesCollection();
+
+    this.listenTo(this.rulesCollection, 'loaded', this.render);
+    this.listenTo(this.rulesCollection, 'add', this.render);
+    this.listenTo(this.rulesCollection, 'change', this.render);
+    this.listenTo(this.rulesCollection, 'remove', this.render);
+  },
+
+  updateCollection: function() {
+    this.rulesCollection.fetchRules();
   },
 
   render: function(options) {
-    var that = this;
-
-    this.rulesCollection.fetchRules({
-      success: function(rules) {
-        var markup = _.template(options.template, { rules: rules.models });
-        that.$el.html(markup);
-      }
-    });
+    if (options && options.update) {
+      // updateCollection will trigger 'loaded' event which will render the view
+      this.updateCollection();
+    } else {
+      var markup = _.template(this.Template(), { rules: this.rulesCollection.models });
+      this.$el.html(markup);
+    }
   },
 
   showRuleEditor: function(event) {
     var $ruleItemRow = $(event.target).parents('.rule-item-row'),
-      creationDate = $ruleItemRow.attr('data-creationDate'),
-      ruleType = $ruleItemRow.attr('data-type');
+      id = $ruleItemRow.data('id');
 
-    RQ.router.navigate('/edit/' + ruleType + '/' + creationDate, { trigger: true });
+    RQ.router.navigate('/edit/' + id, { trigger: true });
   },
 
   toggleStatus: function(event) {
     var $ruleItemRow = $(event.target).parents('.rule-item-row'),
-      ruleType = $ruleItemRow.attr('data-type'),
-      objectKey = ruleType + '_' + $ruleItemRow.attr('data-creationDate'),
-      that = this,
-      ruleModel;
+      ruleModel = this.rulesCollection.get($ruleItemRow.data('id'));
 
-    //TODO: Get Model from Collection instead of fetching from DB
-    BG.StorageService.getRecord(objectKey, function(modelJSON) {
-      modelJSON = modelJSON[objectKey];
-      var model = new RQ.router.ruleModelMap[ruleType.toUpperCase()](modelJSON),
-        currentStatus = model.getStatus();
+    if (ruleModel.getStatus() === RQ.RULE_STATUS.ACTIVE) {
+      ruleModel.setStatus(RQ.RULE_STATUS.INACTIVE);
+    } else {
+      ruleModel.setStatus(RQ.RULE_STATUS.ACTIVE);
+    }
 
-      if (currentStatus === RQ.RULE_STATUS.ACTIVE) {
-        model.setStatus(RQ.RULE_STATUS.INACTIVE);
-      } else {
-        model.setStatus(RQ.RULE_STATUS.ACTIVE);
-      }
-
-      //TODO: Figure out a way to update the specific model instead of whole collection
-      model.save({ callback:function() {
-        that.render({ template: RQ.Templates.RULE_INDEX_TEMPLATE });
-      }});
-
-    });
-
+    ruleModel.save();
     return false;
   },
 
   deleteRule: function(event) {
     var $ruleItemRow = $(event.target).parents('.rule-item-row'),
-      objectKey = $ruleItemRow.attr('data-type') + '_' + $ruleItemRow.attr('data-creationDate'),
+      ruleModel = this.rulesCollection.get($ruleItemRow.data('id')),
       that = this;
 
     if (window.confirm(RQ.MESSAGES.DELETE_RULE)) {
-      BG.StorageService.removeRecord(objectKey, function() {
-        that.render({ template: RQ.Templates.RULE_INDEX_TEMPLATE });
-      });
+      that.rulesCollection.remove(ruleModel);
+      ruleModel.remove();
     }
 
     return false;
+  },
+
+  exportAllRules: function() {
+    var rules = _.pluck(this.rulesCollection.models, 'attributes');
+    Backbone.trigger('file:save', JSON.stringify(rules), 'requestly_rules');
+  },
+
+  importAllRules: function() {
+    var that = this;
+
+    Backbone.trigger('file:load', function(data) {
+      var rules = JSON.parse(data);
+      _.each(rules, function(rule) {
+        var ruleModel = new BaseRuleModel(rule);
+        ruleModel.save();
+      });
+      that.rulesCollection.add(rules, { remove: false });
+    });
   }
 });

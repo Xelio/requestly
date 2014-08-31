@@ -9,6 +9,22 @@ var BaseRuleModel = Backbone.Model.extend({
     }
   },
 
+  setId: function(id) {
+    this.set('id', id, { silent: true });
+  },
+
+  getId: function() {
+    return this.get('id');
+  },
+
+  generateId: function() {
+    var creationDate = this.hasCreationDate() ? this.getCreationDate() : this.getTimestamp(),
+      id = this.getRuleType() + '_' + creationDate;
+
+    this.setId(id);
+    return id;
+  },
+
   getName: function() {
     return this.get('name');
   },
@@ -54,17 +70,32 @@ var BaseRuleModel = Backbone.Model.extend({
   },
 
   save: function(options) {
-    var creationDate = this.hasCreationDate() ? this.getCreationDate() : this.getTimestamp(),
-      objectKey = this.getRuleType() + '_' + creationDate,
+    var id = this.getId(),
       storageObject = {},
       storageService = BG.StorageService;
 
-    storageObject[objectKey] = this.toJSON();
+    if (!id) {
+      id = this.generateId();
+    }
 
+    storageObject[id] = this.toJSON();
+
+    options = options || {};
     options.callback = options.callback || function() {
       console.log('object saved');
     };
 
     storageService.saveRecord(storageObject, options.callback);
+  },
+
+  remove: function(options) {
+    var id = this.getId();
+
+    options = options || {};
+    options.callback = options.callback || function() {
+      console.log('object removed');
+    };
+
+    BG.StorageService.removeRecord(id, options.callback);
   }
 });

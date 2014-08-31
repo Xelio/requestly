@@ -72,7 +72,7 @@ chrome.storage.onChanged.addListener(function(changes, namespace) {
       /* Add/Edit Rule operation */
       if (typeof change.oldValue === 'undefined' && typeof change.newValue !== 'undefined') {
         for (i = 0; i < StorageService.records.length; i++) {
-          recordKey = StorageService.records[i].ruleType + '_' + StorageService.records[i].creationDate;
+          recordKey = StorageService.records[i].id || StorageService.records[i].ruleType + '_' + StorageService.records[i].creationDate;
 
           if (recordKey === changedObjectkey) {
             StorageService.records[i] = change.newValue;
@@ -89,7 +89,7 @@ chrome.storage.onChanged.addListener(function(changes, namespace) {
       /* Delete Rule Operation */
       if (typeof change.oldValue !== 'undefined' && typeof change.newValue === 'undefined') {
         for (i = 0; i < StorageService.records.length; i++) {
-          recordKey = StorageService.records[i].ruleType + '_' + StorageService.records[i].creationDate;
+          recordKey = StorageService.records[i].id || StorageService.records[i].ruleType + '_' + StorageService.records[i].creationDate;
 
           if (recordKey === changedObjectkey) {
             StorageService.records = StorageService.records.splice(i, 1);

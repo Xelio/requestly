@@ -13,7 +13,7 @@ var BaseRuleEditorView = Backbone.View.extend({
   },
 
   render: function(options) {
-    if (options.model && options.model instanceof Backbone.Model) {
+    if (options && options.model && options.model instanceof Backbone.Model) {
       this.model = options.model;
     }
 

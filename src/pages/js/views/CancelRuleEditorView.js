@@ -2,6 +2,10 @@ var CancelRuleEditorView = Backbone.View.extend({
 
   Model: CancelRuleModel,
 
+  Template: function() {
+    return RQ.Templates.CANCEL_RULE_EDITOR_TEMPLATE;
+  },
+
   className: 'cancel-rule-editor',
 
   events: {
@@ -19,11 +23,11 @@ var CancelRuleEditorView = Backbone.View.extend({
   },
 
   render: function(options) {
-    if (options.model && options.model instanceof Backbone.Model) {
+    if (options && options.model && options.model instanceof Backbone.Model) {
       this.model = options.model;
     }
 
-    var markup = _.template(options.template, { rule: this.model });
+    var markup = _.template(this.Template(), { rule: this.model });
     $(this.el).html(markup);
   },
 

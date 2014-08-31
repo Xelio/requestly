@@ -2,6 +2,10 @@ var ReplaceRuleEditorView = Backbone.View.extend({
 
   Model: ReplaceRuleModel,
 
+  Template: function() {
+    return RQ.Templates.REPLACE_RULE_EDITOR_TEMPLATE;
+  },
+
   className: 'replace-rule-editor',
 
   events: {
@@ -16,18 +20,15 @@ var ReplaceRuleEditorView = Backbone.View.extend({
 
   initialize: function(options) {
     options = options || {};
-    this.model = new (options.model || this.Model);
+    this.model = new (options && options.model || this.Model);
   },
 
   render: function(options) {
-    options = options || {};
-    options.template = options.template || RQ.Templates.REPLACE_RULE_EDITOR_TEMPLATE;
-
-    if (options.model && options.model instanceof Backbone.Model) {
+    if (options && options.model && options.model instanceof Backbone.Model) {
       this.model = options.model;
     }
 
-    var markup = _.template(options.template, { rule: this.model });
+    var markup = _.template(this.Template(), { rule: this.model });
     $(this.el).html(markup);
   },
 

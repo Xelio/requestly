@@ -3,7 +3,7 @@ RQ.Router = Backbone.Router.extend({
     '': 'showRulesList',
     'selectRule': 'showRuleCardsView',
     'new/:type': 'showRuleCreator',
-    'edit/:type/:date': 'showRuleEditor'
+    'edit/:id': 'showRuleEditor'
   },
 
   ruleModelMap: {
@@ -18,45 +18,35 @@ RQ.Router = Backbone.Router.extend({
     REPLACE: ReplaceRuleEditorView
   },
 
-  ruleTemplateMap: {
-    REDIRECT: RQ.Templates.REDIRECT_RULE_EDITOR_TEMPLATE,
-    CANCEL: RQ.Templates.CANCEL_RULE_EDITOR_TEMPLATE,
-    REPLACE: RQ.Templates.REPLACE_RULE_EDITOR_TEMPLATE
-  },
-
   showRulesList: function() {
     var ruleIndexView = new RuleIndexView();
-    RQ.showView(ruleIndexView, { template: RQ.Templates.RULE_INDEX_TEMPLATE });
+    RQ.showView(ruleIndexView, { update: true });
   },
 
   showRuleCardsView: function() {
     var ruleCardsView = new RuleCardsView();
-    RQ.showView(ruleCardsView, { template: RQ.Templates.RULE_CARDS_TEMPLATE });
+    RQ.showView(ruleCardsView);
   },
 
   showRuleCreator: function(ruleType) {
     var ruleTypeUpperCase = ruleType.toUpperCase(),
-      template = this.ruleTemplateMap[ruleTypeUpperCase],
-      editorView = new this.ruleViewMap[ruleTypeUpperCase](),
-      model = new this.ruleModelMap[ruleTypeUpperCase]();
+      editorView = new this.ruleViewMap[ruleTypeUpperCase]();
 
-    RQ.showView(editorView, { template: template });
+    RQ.showView(editorView);
   },
 
-  showRuleEditor: function(ruleType, date) {
-    var objectKey = ruleType + '_' + date,
-      that = this;
+  showRuleEditor: function(ruleId) {
+    var that = this;
 
-    BG.StorageService.getRecord(objectKey, function(modelJSON) {
-      var ruleTypeUpperCase = ruleType.toUpperCase(),
-        template = that.ruleTemplateMap[ruleTypeUpperCase],
+    BG.StorageService.getRecord(ruleId, function(modelJSON) {
+      var ruleModelJSON = modelJSON[ruleId],
+        ruleTypeUpperCase = ruleModelJSON.ruleType.toUpperCase(),
         editorView = new that.ruleViewMap[ruleTypeUpperCase](),
         model;
 
-      modelJSON = modelJSON[objectKey];
-      model = new that.ruleModelMap[ruleTypeUpperCase](modelJSON);
+      model = new that.ruleModelMap[ruleTypeUpperCase](ruleModelJSON);
 
-      RQ.showView(editorView, {template: template, model: model });
+      RQ.showView(editorView, { model: model });
     });
   }
 });

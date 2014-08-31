@@ -2,6 +2,10 @@ var RedirectRuleEditorView = Backbone.View.extend({
 
   Model: RedirectRuleModel,
 
+  Template: function() {
+    return RQ.Templates.REDIRECT_RULE_EDITOR_TEMPLATE;
+  },
+
   events: {
     'keyup .rule-name-input': 'updateRuleName',
     'change .rule-status-select': 'updateRuleStatus',
@@ -18,11 +22,11 @@ var RedirectRuleEditorView = Backbone.View.extend({
   },
 
   render: function(options) {
-    if (options.model && options.model instanceof Backbone.Model) {
+    if (options && options.model && options.model instanceof Backbone.Model) {
       this.model = options.model;
     }
 
-    var markup = _.template(options.template, { rule: this.model });
+    var markup = _.template(this.Template(), { rule: this.model });
     $(this.el).html(markup);
   },
 
