@@ -22,7 +22,7 @@ var RulesCollection = Backbone.Collection.extend({
           options.success(that);
         }
 
-        this.trigger('loaded');
+        that.trigger('loaded');
       }
     });
   }

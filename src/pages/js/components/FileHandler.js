@@ -10,7 +10,7 @@
     return $link;
   }
 
-  function saveTextAsFile(text, fileName) {
+  function saveAsTextFile(text, fileName) {
     var textFileAsBlob = new Blob([text], { type:'text/plain' }),
       $downloadLink = getOrCreateDownloadLink();
 
@@ -34,7 +34,7 @@
     return $link;
   }
 
-  function loadFileAsText(callback) {
+  function loadTextFile(callback) {
     var $link = getOrCreateUploadLink(),
       reader = new FileReader();
 
@@ -50,7 +50,7 @@
     $link.click();
   }
 
-  Backbone.on('file:save', saveTextAsFile);
-  Backbone.on('file:load', loadFileAsText);
+  Backbone.on('file:save', saveAsTextFile);
+  Backbone.on('file:load', loadTextFile);
 
 }(jQuery));
