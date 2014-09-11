@@ -1,7 +1,7 @@
 {
   "name": "Requestly",
-  "version": "2.1",
-  "description": "A Chrome extension to modify network requests",
+  "version": "2.2",
+  "description": "A Chrome extension to modify HTTP requests",
   "main": "app.js",
   "directories": {
     "doc": "docs"
