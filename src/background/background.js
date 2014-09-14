@@ -28,12 +28,19 @@ BG.Methods.matchUrlWithRule = function(rule, url) {
 
 BG.Methods.matchUrlWithReplaceRulePairs = function(rule, url) {
   var pairs = rule.pairs,
+    pair = null,
+    matchRegExp = null,
+    from = null,
     resultingUrl = null;
 
   for (var i = 0; i < pairs.length; i++) {
-    var pair = pairs[i];
-    var matchRegExp = pair.from.match(/^\/(.+)\/(i?g?$)/);
-    var from = matchRegExp ? new RegExp(matchRegExp[1], matchRegExp[2]) : pair.from
+    pair = pairs[i];
+    pair.from = pair.from || '';
+
+    // When string pair.from looks like a RegExp, create a RegExp object from it
+    matchRegExp = pair.from.match(/^\/(.+)\/(i?g?$)/);
+    from = matchRegExp ? new RegExp(matchRegExp[1], matchRegExp[2]) : pair.from;
+
     if (url.match(from)) {
       console.log('matched');
       resultingUrl = url.replace(from, pair.to);
