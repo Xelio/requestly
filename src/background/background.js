@@ -38,7 +38,7 @@ BG.Methods.matchUrlWithReplaceRulePairs = function(rule, url) {
     pair.from = pair.from || '';
 
     // When string pair.from looks like a RegExp, create a RegExp object from it
-    matchRegExp = pair.from.match(/^\/(.+)\/(i?g?$)/);
+    matchRegExp = pair.from.match(/^\/(.+)\/(|i|g|ig|gi)$/);
     from = matchRegExp ? new RegExp(matchRegExp[1], matchRegExp[2]) : pair.from;
 
     if (url.match(from)) {
